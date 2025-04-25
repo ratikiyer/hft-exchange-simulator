@@ -1,6 +1,6 @@
 # Testing Efficiency on Multithreaded Exchange in C++
 
-![Headshot](imgs/headshot.JPG)
+![Headshot](imgs/Headshot.JPG)
 
 **Kevin Xu, SWE**
 
