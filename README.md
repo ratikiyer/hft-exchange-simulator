@@ -12,3 +12,15 @@ Hello, I am a sophomore studying Statistics + Computer Science. I am interested 
 Email: kevinxu501@gmail.com  
 LinkedIn: [https://www.linkedin.com/in/kevinxu501/](https://www.linkedin.com/in/kevinxu501/)
 
+<p align="center">
+  <img src="imgs/Sidd_headshot.JPG" alt="Sidd_Headshot" width="200"/>
+</p>
+
+**Sidd Cheetancheri, SWE**
+
+Hello, I am a sophomore studying Computer Science at UIUC. I am interested in ML transformer models and computer networking. I am proficient in C++, Python, and C. I am interested in any opportunities for Summer 2026. 
+
+
+Email: siddcheetancheri@gmail.com  
+LinkedIn: [https://www.linkedin.com/in/sidd-cheetancheri/](https://www.linkedin.com/in/sidd-cheetancheri/)
+
