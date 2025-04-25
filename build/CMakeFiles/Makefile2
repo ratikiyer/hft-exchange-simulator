@@ -168,9 +168,9 @@ CMakeFiles/hft-exchange.dir/clean:
 # Target rules for target CMakeFiles/test-orderbook.dir
 
 # All Build rule for target.
-CMakeFiles/test-orderbook.dir/all: CMakeFiles/orderbook_lib.dir/all
-CMakeFiles/test-orderbook.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 CMakeFiles/test-orderbook.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
+CMakeFiles/test-orderbook.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
+CMakeFiles/test-orderbook.dir/all: CMakeFiles/orderbook_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test-orderbook.dir/build.make CMakeFiles/test-orderbook.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test-orderbook.dir/build.make CMakeFiles/test-orderbook.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/app/build/CMakeFiles --progress-num=99,100 "Built target test-orderbook"
