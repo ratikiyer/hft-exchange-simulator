@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
+RM = /usr/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ratikiyer/Programming/quant/hft-exchange
+CMAKE_SOURCE_DIR = /app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ratikiyer/Programming/quant/hft-exchange/build
+CMAKE_BINARY_DIR = /app/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/orderbook_lib.dir/depend.make
@@ -70,30 +70,46 @@ include CMakeFiles/orderbook_lib.dir/progress.make
 include CMakeFiles/orderbook_lib.dir/flags.make
 
 CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o: CMakeFiles/orderbook_lib.dir/flags.make
-CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o: /Users/ratikiyer/Programming/quant/hft-exchange/src/orderbook.cpp
+CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o: /app/src/orderbook.cpp
 CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o: CMakeFiles/orderbook_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ratikiyer/Programming/quant/hft-exchange/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o -MF CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o.d -o CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o -c /Users/ratikiyer/Programming/quant/hft-exchange/src/orderbook.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o -MF CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o.d -o CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o -c /app/src/orderbook.cpp
 
 CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ratikiyer/Programming/quant/hft-exchange/src/orderbook.cpp > CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/orderbook.cpp > CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.i
 
 CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ratikiyer/Programming/quant/hft-exchange/src/orderbook.cpp -o CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/orderbook.cpp -o CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.s
+
+CMakeFiles/orderbook_lib.dir/src/logger.cpp.o: CMakeFiles/orderbook_lib.dir/flags.make
+CMakeFiles/orderbook_lib.dir/src/logger.cpp.o: /app/src/logger.cpp
+CMakeFiles/orderbook_lib.dir/src/logger.cpp.o: CMakeFiles/orderbook_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/orderbook_lib.dir/src/logger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orderbook_lib.dir/src/logger.cpp.o -MF CMakeFiles/orderbook_lib.dir/src/logger.cpp.o.d -o CMakeFiles/orderbook_lib.dir/src/logger.cpp.o -c /app/src/logger.cpp
+
+CMakeFiles/orderbook_lib.dir/src/logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/orderbook_lib.dir/src/logger.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/logger.cpp > CMakeFiles/orderbook_lib.dir/src/logger.cpp.i
+
+CMakeFiles/orderbook_lib.dir/src/logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orderbook_lib.dir/src/logger.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/logger.cpp -o CMakeFiles/orderbook_lib.dir/src/logger.cpp.s
 
 # Object files for target orderbook_lib
 orderbook_lib_OBJECTS = \
-"CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o"
+"CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o" \
+"CMakeFiles/orderbook_lib.dir/src/logger.cpp.o"
 
 # External object files for target orderbook_lib
 orderbook_lib_EXTERNAL_OBJECTS =
 
 liborderbook_lib.a: CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o
+liborderbook_lib.a: CMakeFiles/orderbook_lib.dir/src/logger.cpp.o
 liborderbook_lib.a: CMakeFiles/orderbook_lib.dir/build.make
 liborderbook_lib.a: CMakeFiles/orderbook_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ratikiyer/Programming/quant/hft-exchange/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library liborderbook_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library liborderbook_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/orderbook_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/orderbook_lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -106,6 +122,6 @@ CMakeFiles/orderbook_lib.dir/clean:
 .PHONY : CMakeFiles/orderbook_lib.dir/clean
 
 CMakeFiles/orderbook_lib.dir/depend:
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ratikiyer/Programming/quant/hft-exchange /Users/ratikiyer/Programming/quant/hft-exchange /Users/ratikiyer/Programming/quant/hft-exchange/build /Users/ratikiyer/Programming/quant/hft-exchange/build /Users/ratikiyer/Programming/quant/hft-exchange/build/CMakeFiles/orderbook_lib.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /app /app /app/build /app/build /app/build/CMakeFiles/orderbook_lib.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/orderbook_lib.dir/depend
 

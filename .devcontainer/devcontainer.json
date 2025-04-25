@@ -1,0 +1,30 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "HFT Exchange Dev",
+  "build": {
+    "context": "..",
+    "dockerfile": "../Dockerfile"
+  },
+  "workspaceFolder": "/app",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=cached",
+  "customizations": {
+    "vscode": {
+      // 1) Install these two into your container
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools"
+      ],
+      // 2) All VS Code settings go here now
+      "settings": {
+        // have CMake export compile_commands.json
+        "cmake.configureSettings": {
+          "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+        },
+        // tell the C/C++ extension where to find it
+        "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+        // use the full IntelliSense engine
+        "C_Cpp.intelliSenseEngine": "default"
+      }
+    }
+  }
+}

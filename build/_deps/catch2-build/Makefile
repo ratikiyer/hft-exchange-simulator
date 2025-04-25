@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
+RM = /usr/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ratikiyer/Programming/quant/hft-exchange
+CMAKE_SOURCE_DIR = /app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ratikiyer/Programming/quant/hft-exchange/build
+CMAKE_BINARY_DIR = /app/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/ratikiyer/Programming/quant/hft-exchange/build
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/opt/homebrew/Cellar/cmake/3.28.1/bin/ctest --force-new-ctest-process $(ARGS)
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -77,8 +77,8 @@ test/fast: test
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/opt/homebrew/Cellar/cmake/3.28.1/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -88,7 +88,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -97,14 +97,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/ratikiyer/Programming/quant/hft-exchange/build/CMakeFiles /Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-build//CMakeFiles/progress.marks
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ratikiyer/Programming/quant/hft-exchange/build/CMakeFiles 0
+	cd /app/build && $(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles /app/build/_deps/catch2-build//CMakeFiles/progress.marks
+	cd /app/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/clean
+	cd /app/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/clean
 .PHONY : clean
 
 # The main clean target
@@ -113,17 +113,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/preinstall
+	cd /app/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/preinstall
+	cd /app/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /app/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -146,6 +146,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/ratikiyer/Programming/quant/hft-exchange/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /app/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

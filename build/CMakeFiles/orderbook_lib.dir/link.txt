@@ -1,2 +1,2 @@
-/usr/bin/ar qc liborderbook_lib.a CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o
+/usr/bin/ar qc liborderbook_lib.a CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o CMakeFiles/orderbook_lib.dir/src/logger.cpp.o
 /usr/bin/ranlib liborderbook_lib.a

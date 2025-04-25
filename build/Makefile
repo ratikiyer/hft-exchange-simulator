@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
+RM = /usr/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ratikiyer/Programming/quant/hft-exchange
+CMAKE_SOURCE_DIR = /app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ratikiyer/Programming/quant/hft-exchange/build
+CMAKE_BINARY_DIR = /app/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/ratikiyer/Programming/quant/hft-exchange/build
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/opt/homebrew/Cellar/cmake/3.28.1/bin/ctest --force-new-ctest-process $(ARGS)
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -77,8 +77,8 @@ test/fast: test
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/opt/homebrew/Cellar/cmake/3.28.1/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -88,7 +88,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -97,9 +97,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ratikiyer/Programming/quant/hft-exchange/build/CMakeFiles /Users/ratikiyer/Programming/quant/hft-exchange/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles /app/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ratikiyer/Programming/quant/hft-exchange/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /app/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -140,6 +140,19 @@ orderbook_lib/fast:
 .PHONY : orderbook_lib/fast
 
 #=============================================================================
+# Target rules for targets named hft-exchange
+
+# Build rule for target.
+hft-exchange: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hft-exchange
+.PHONY : hft-exchange
+
+# fast build rule for target.
+hft-exchange/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hft-exchange.dir/build.make CMakeFiles/hft-exchange.dir/build
+.PHONY : hft-exchange/fast
+
+#=============================================================================
 # Target rules for targets named test-orderbook
 
 # Build rule for target.
@@ -177,6 +190,54 @@ Catch2WithMain: cmake_check_build_system
 Catch2WithMain/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
 .PHONY : Catch2WithMain/fast
+
+src/logger.o: src/logger.cpp.o
+.PHONY : src/logger.o
+
+# target to build an object file
+src/logger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook_lib.dir/build.make CMakeFiles/orderbook_lib.dir/src/logger.cpp.o
+.PHONY : src/logger.cpp.o
+
+src/logger.i: src/logger.cpp.i
+.PHONY : src/logger.i
+
+# target to preprocess a source file
+src/logger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook_lib.dir/build.make CMakeFiles/orderbook_lib.dir/src/logger.cpp.i
+.PHONY : src/logger.cpp.i
+
+src/logger.s: src/logger.cpp.s
+.PHONY : src/logger.s
+
+# target to generate assembly for a file
+src/logger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook_lib.dir/build.make CMakeFiles/orderbook_lib.dir/src/logger.cpp.s
+.PHONY : src/logger.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hft-exchange.dir/build.make CMakeFiles/hft-exchange.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hft-exchange.dir/build.make CMakeFiles/hft-exchange.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hft-exchange.dir/build.make CMakeFiles/hft-exchange.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 src/orderbook.o: src/orderbook.cpp.o
 .PHONY : src/orderbook.o
@@ -237,8 +298,15 @@ help:
 	@echo "... test"
 	@echo "... Catch2"
 	@echo "... Catch2WithMain"
+	@echo "... hft-exchange"
 	@echo "... orderbook_lib"
 	@echo "... test-orderbook"
+	@echo "... src/logger.o"
+	@echo "... src/logger.i"
+	@echo "... src/logger.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 	@echo "... src/orderbook.o"
 	@echo "... src/orderbook.i"
 	@echo "... src/orderbook.s"

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/orderbook_lib.dir/src/logger.cpp.o"
+  "CMakeFiles/orderbook_lib.dir/src/logger.cpp.o.d"
   "CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o"
   "CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o.d"
   "liborderbook_lib.a"
