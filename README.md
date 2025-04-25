@@ -36,7 +36,7 @@ Email: siddc2@illinois.edu
 LinkedIn: [https://www.linkedin.com/in/sidd-cheetancheri/](https://www.linkedin.com/in/sidd-cheetancheri/)
 
 <p align="center">
-  <img src="imgs/Anuraag_headshot.png" alt="Anuraag_Headshot" width="200"/>
+  <img src="imgs/Anuraag_headshot.jpg" alt="Anuraag_Headshot" width="200"/>
 </p>
 
 **Anuraag Aravindan, SWE**
