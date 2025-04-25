@@ -32,7 +32,6 @@ LinkedIn: [https://www.linkedin.com/in/kevinxu501/](https://www.linkedin.com/in/
 
 Hello, I am a sophomore studying Computer Science at UIUC. I am interested in machine learning (particularly transformer models) and computer networking. I am proficient in C++, Python, and C. I am interested in opportunities involving ML optimization or network solutions for Summer 2026.
 
-Email: siddc2@illinois.edu
-
+Email: siddc2@illinois.edu  
 LinkedIn: [https://www.linkedin.com/in/sidd-cheetancheri/](https://www.linkedin.com/in/sidd-cheetancheri/)
 
