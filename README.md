@@ -1,7 +1,7 @@
 # Testing Efficiency on Multithreaded Exchange in C++
 
 <p align="center">
-  <img src="imgs/Headshot.JPG" alt="Headshot" width="200"/>
+  <img src="imgs/Kevin_headshot.JPG" alt="Headshot" width="200"/>
 </p>
 
 **Kevin Xu, SWE**
