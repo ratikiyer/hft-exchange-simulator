@@ -1,4 +1,4 @@
-# Testing Efficiency on Multithreaded Exchange in C++
+# Testing Latency & Throughput of Multithreaded Exchange in C++ on Different Architectures
 
 <p align="center">
   <img src="imgs/Ratik_headshot.JPG" alt="Headshot" width="200">
