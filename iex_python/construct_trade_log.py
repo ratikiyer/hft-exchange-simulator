@@ -142,5 +142,5 @@ def main(file_path, max_lines=10000000, target_symbol='AAPL', all_symbols=False)
     for event in recon.events.get(target_symbol, []):
         print(event)
 
-# To run it in a script or notebook:
+# To run it in a script:
 main("20250415_113602_iexdata.txt", all_symbols=True)
