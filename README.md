@@ -13,7 +13,7 @@ Email: kevinxu501@gmail.com
 LinkedIn: [https://www.linkedin.com/in/kevinxu501/](https://www.linkedin.com/in/kevinxu501/)
 
 <p align="center">
-  <img src="imgs/Sidd_headshot.JPG" alt="Sidd_Headshot" width="200"/>
+  <img src="imgs/Sidd_headshot.png" alt="Sidd_Headshot" width="200"/>
 </p>
 
 **Sidd Cheetancheri, SWE**
