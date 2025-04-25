@@ -35,3 +35,14 @@ Hello, I am a sophomore studying Computer Science at UIUC. I am interested in ma
 Email: siddc2@illinois.edu  
 LinkedIn: [https://www.linkedin.com/in/sidd-cheetancheri/](https://www.linkedin.com/in/sidd-cheetancheri/)
 
+<p align="center">
+  <img src="imgs/Anuraag_headshot.png" alt="Anuraag_Headshot" width="200"/>
+</p>
+
+**Anuraag Aravindan, SWE**
+
+Hello, I am a sophomore studying Computer Science and Economics at UIUC. I am interested in quantitative trading, statistical modeling, and machine learning. I am proficient in Python, and C++. I am interested in opportunties as a trader at options market makers and hedge funds for both low and high touch desks. I am interested in any summer 2026 opportunities.
+
+Email: anuraag6@illinois.edu  
+LinkedIn: [https://www.linkedin.com/in/anuraag-aravindan/](https://www.linkedin.com/in/anuraag-aravindan/)
+
