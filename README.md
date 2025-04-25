@@ -20,7 +20,7 @@ LinkedIn: [https://www.linkedin.com/in/ratik-iyer-57058b17a/](https://www.linked
 Hello, I am a sophomore studying Statistics + Computer Science. I am interested in statistical modeling, software engineering, and high frequency trading technology development. I am proficient in Python, C++, and C# and am interested in any opportunities for Summer 2026. 
 
 
-Email: kevinxu501@gmail.com  
+Email: khx2@illinois.edu  
 LinkedIn: [https://www.linkedin.com/in/kevinxu501/](https://www.linkedin.com/in/kevinxu501/)
 
 <p align="center">
