@@ -30,9 +30,8 @@ LinkedIn: [https://www.linkedin.com/in/kevinxu501/](https://www.linkedin.com/in/
 
 **Sidd Cheetancheri, SWE**
 
-Hello, I am a sophomore studying Computer Science at UIUC. I am interested in ML transformer models and computer networking. I am proficient in C++, Python, and C. I am interested in any opportunities for Summer 2026. 
+Hello, I am a sophomore studying Computer Science at UIUC. I am interested in machine learning (particularly transformer models) and computer networking. I am proficient in C++, Python, and C. I am interested in opportunities involving ML optimization or network solutions for Summer 2026.
 
-
-Email: siddcheetancheri@gmail.com  
+Email: siddc2@illinois.edu 
 LinkedIn: [https://www.linkedin.com/in/sidd-cheetancheri/](https://www.linkedin.com/in/sidd-cheetancheri/)
 
