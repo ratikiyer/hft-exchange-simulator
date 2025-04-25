@@ -8,7 +8,7 @@
 
 Hi, I'm Ratik, a sophomore at the University of Illinois Urbana-Champaign studying Statistics & Computer Science. I am passionate about quantitative development, low-latency systems, and high-performance computing. My primary language is C++, and I am also proficient in Python and R. I am particularly interested in software engineering roles at trading firms, where performance, optimization, and precision are critical. I am currently seeking Summer 2026 internship opportunities.
 
-Email: ratikiyer@gmail.com
+Email: ratikiyer@gmail.com  
 LinkedIn: [https://www.linkedin.com/in/ratik-iyer-57058b17a/](https://www.linkedin.com/in/ratik-iyer-57058b17a/)
 
 <p align="center">
