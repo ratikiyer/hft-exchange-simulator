@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20250425-1848-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.28.3"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="5a07b13f9c54"
+	OSRelease="6.10.14-linuxkit"
+	OSVersion="#1 SMP Thu Mar 20 16:32:56 UTC 2025"
+	OSPlatform="aarch64"
+	Is64Bits="1"
+	VendorString=""
+	VendorID="Unknown Manufacturer"
+	FamilyID="8"
+	ModelID="0"
+	ProcessorCacheSize="0"
+	NumberOfLogicalCPU="12"
+	NumberOfPhysicalCPU="1"
+	TotalVirtualMemory="1023"
+	TotalPhysicalMemory="7837"
+	LogicalProcessorsPerPhysical="12"
+	ProcessorClockFrequency="0"
+	>
+	<Testing>
+		<StartDateTime>Apr 25 18:48 UTC</StartDateTime>
+		<StartTestTime>1745606923</StartTestTime>
+		<TestList/>
+		<EndDateTime>Apr 25 18:48 UTC</EndDateTime>
+		<EndTestTime>1745606923</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

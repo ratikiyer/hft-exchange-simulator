@@ -10,9 +10,9 @@
 #include <optional>
 #include <atomic>
 
-#include "../includes/logger.h"
-#include "../includes/plf_hive.h"
-#include "../includes/robin_hood.h"
+#include "logger.h"
+#include "plf_hive.h"
+#include "robin_hood.h"
 
 static constexpr uint32_t MAX_PRICE = 20000;
 
@@ -43,7 +43,7 @@ private:
    uint32_t best_bid_price_ = 0;
    uint32_t best_ask_price_ = MAX_PRICE + 1;
 
-   robin_hood::unordered_map< order_id_key, order_location, order_id_hasher > order_id_lookup_;
+   std::unordered_map< order_id_key, order_location, order_id_hasher > order_id_lookup_;
 
    logger* log_ = nullptr;
 
