@@ -102,6 +102,43 @@ public:
     }
 
     order_t convert_to_order(const ParsedOrder& p) const {
-        // Convert to Order Here
+        using namespace detail;
+        order_kind   kind      = order_kind::LMT;
+        order_status status    = order_status::NEW;
+        order_side   side      = p.is_buy ? order_side::BUY : order_side::SELL;
+
+        switch (p.msg_type) {
+            case TYPE_LIMIT_BUY:
+            case TYPE_LIMIT_SELL:
+                kind   = order_kind::LMT;
+                status = order_status::NEW;
+                break;
+            case TYPE_MARKET_BUY:
+            case TYPE_MARKET_SELL:
+                kind   = order_kind::MKT;
+                status = order_status::NEW;
+                break;
+            case TYPE_UPDATE:
+                status = order_status::PARTIALLY_FILLED;
+                break;
+            case TYPE_CANCEL:
+                status = order_status::CANCELLED;
+                break;
+            default:
+                status = order_status::NEW;
+                break;
+        }
+
+        return order_t(
+            p.timestamp,
+            p.order_id,
+            p.ticker,
+            kind,
+            side,
+            status,
+            p.price,
+            p.qty,
+            false
+        );
     }
 };
