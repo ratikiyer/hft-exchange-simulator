@@ -115,7 +115,7 @@ class EventReconstructor:
         heuristic = HEUR_HIDDEN_FILL if hidden else HEUR_VISIBLE_FILL
         self.record(symbol, 'S', price, size, heuristic, hidden, ts)
 
-def main(file_path, max_lines=10000000, target_symbol='AAPL', all_symbols=False):
+def main(file_path, max_lines=5000000, target_symbol='AAPL', all_symbols=False):
     recon = EventReconstructor()
     with open(file_path, 'r') as f:
         for idx, line in enumerate(f):
