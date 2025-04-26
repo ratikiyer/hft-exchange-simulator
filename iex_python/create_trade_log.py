@@ -43,8 +43,13 @@ class EventReconstructor:
 
     def record(self, symbol, side, price, size, typ, hidden, timestamp):
         event = {
-            'side': side, 'price': price, 'size': size,
-            'type': typ, 'hidden': hidden, 'timestamp': timestamp
+            'symbol': symbol,  # <-- Add symbol here
+            'side': side,
+            'price': price,
+            'size': size,
+            'type': typ,
+            'hidden': hidden,
+            'timestamp': timestamp
         }
         self.events[symbol].append(event)
 
@@ -61,8 +66,12 @@ class EventReconstructor:
         if len(set(prices)) > 1:
             for ts, sym, sd, pr in relevant:
                 self.events[sym].append({
-                    'side': sd, 'price': pr, 'size': None,
-                    'type': HEUR_MULTI_LEVEL_SWEEP, 'hidden': False,
+                    'symbol': sym,   # <-- Add symbol
+                    'side': sd,
+                    'price': pr,
+                    'size': None,
+                    'type': HEUR_MULTI_LEVEL_SWEEP,
+                    'hidden': False,
                     'timestamp': ts
                 })
 
@@ -97,9 +106,9 @@ class EventReconstructor:
         if old_best and new_best and old_best != new_best:
             ts_dt = datetime.fromisoformat(ts)
             recent = [e for e in self.events[symbol]
-                    if e['type'] in [HEUR_VISIBLE_FILL, HEUR_HIDDEN_FILL]
-                    and e['price'] == old_best
-                    and abs(datetime.fromisoformat(e['timestamp']) - ts_dt) <= timedelta(milliseconds=1)]
+                      if e['type'] in [HEUR_VISIBLE_FILL, HEUR_HIDDEN_FILL]
+                      and e['price'] == old_best
+                      and abs(datetime.fromisoformat(e['timestamp']) - ts_dt) <= timedelta(milliseconds=1)]
             if not recent and old_best_size > 0:
                 self.record(symbol, side, old_best, old_best_size, HEUR_CANCEL_NO_TRADE, False, ts)
 
@@ -115,7 +124,7 @@ class EventReconstructor:
         heuristic = HEUR_HIDDEN_FILL if hidden else HEUR_VISIBLE_FILL
         self.record(symbol, 'S', price, size, heuristic, hidden, ts)
 
-def main(file_path, max_lines=10000000, target_symbol='AAPL', all_symbols=False):
+def main(file_path, max_lines=100000, target_symbol='AAPL', all_symbols=False):
     recon = EventReconstructor()
     with open(file_path, 'r') as f:
         for idx, line in enumerate(f):
@@ -132,15 +141,30 @@ def main(file_path, max_lines=10000000, target_symbol='AAPL', all_symbols=False)
             elif msg['type'] == 'trade':
                 recon.process_trade(msg)
 
-    if not all_symbols: print(f"--- Inferred trade events for {target_symbol} ---")
-    else: print(f"--- Inferred trade events for all symbols ---")
+    if not all_symbols:
+        print(f"--- Inferred trade events for {target_symbol} ---")
+    else:
+        print(f"--- Inferred trade events for all symbols ---")
+
     file_name = f"{target_symbol}_events.txt" if not all_symbols else "all_events.txt"
     with open(file_name, "w") as f:
-        for event in recon.events.get(target_symbol, []):
-            f.write(json.dumps(event) + "\n")
-            f.flush()
-    for event in recon.events.get(target_symbol, []):
-        print(event)
+        if not all_symbols:
+            for event in recon.events.get(target_symbol, []):
+                f.write(json.dumps(event) + "\n")
+                f.flush()
+        else:
+            for sym, evlist in recon.events.items():
+                for event in evlist:
+                    f.write(json.dumps(event) + "\n")
+                    f.flush()
 
-# To run it in a script:
+    if not all_symbols:
+        for event in recon.events.get(target_symbol, []):
+            print(event)
+    else:
+        for sym, evlist in recon.events.items():
+            for event in evlist:
+                print(event)
+
+# Example usage:
 main("20250415_113602_iexdata.txt", all_symbols=True)
