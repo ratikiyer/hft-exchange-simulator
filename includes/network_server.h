@@ -6,8 +6,6 @@
 
 constexpr unsigned int BUFFER_SIZE = 4096;
 
-class Exchange;
-
 class NetworkServer {
 public:
 
@@ -38,7 +36,7 @@ private:
    };
 
 private:
-   boost::asio::io_context io_context_;
+   boost::asio::io_context& io_context_;
    boost::asio::ip::tcp::acceptor acceptor_;
    Exchange* exchange_;
    bool running_;
