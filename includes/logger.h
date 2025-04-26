@@ -1,137 +1,110 @@
 #pragma once
 
-#include <chrono>
-#include <cstring>
+#include <string>
 #include <fstream>
-#include <thread>
 #include <atomic>
-#include <stdexcept>
+#include <thread>
 #include <mutex>
 #include <condition_variable>
-
 #include "./types.h"
 #include "./concurrentqueue.h"
 
-enum class log_event_kind : uint8_t { ADD, CANCEL, MODIFY, MATCH };
+enum class log_event_kind : uint8_t {
+   PRICE_LEVEL_UPDATE,
+   TRADE_REPORT,
+   MODIFY,
+   CANCEL
+};
 
 struct log_event_t {
    uint64_t timestamp;
-   char order_id [ ORDER_ID_LEN ];
+   char order_id[ORDER_ID_LEN];
    log_event_kind kind;
    uint32_t price;
    size_t qty;
    order_side side;
 
-   char order_id_secondary [ ORDER_ID_LEN ];
+   char order_id_secondary[ORDER_ID_LEN];
    uint32_t price_secondary;
    size_t qty_secondary;
    order_side side_secondary;
 
-   log_event_t() = default;
-
-   log_event_t(
-      uint64_t ts,
-      const char* id,
-      log_event_kind k,
-      uint32_t p,
-      size_t q,
-      order_side s
-   )
-      : timestamp(ts)
-      , kind(k)
-      , price(p)
-      , qty(q)
-      , side(s)
+   log_event_t()
+      : timestamp(0)
+      , kind(log_event_kind::PRICE_LEVEL_UPDATE)
+      , price(0)
+      , qty(0)
+      , side(order_side::BUY)
       , price_secondary(0)
       , qty_secondary(0)
-      , side_secondary(order_side::BUY) // default
+      , side_secondary(order_side::BUY)
    {
-      std::memcpy(order_id, id, ORDER_ID_LEN);
+      memset(order_id, 0, ORDER_ID_LEN);
+      memset(order_id_secondary, 0, ORDER_ID_LEN);
    }
 };
 
 class logger {
 public:
-   explicit logger(const std::string& filename)
-      : out_file_(filename),
-        running_(true)
-   {
-      if (!out_file_.is_open()) {
-         throw std::runtime_error("Failed to open log file: " + filename);
-      }
-      thread_ = std::thread(&logger::run, this);
-   }
+   // Constructor that opens a single log file
+   explicit logger(const std::string& filename);
 
-   void push(const log_event_t& event) {
-      queue_.enqueue(event);
+   // Destructor that joins thread, closes file
+   ~logger();
 
-      {
-         std::lock_guard<std::mutex> lock(mutex_);
-      }
-      cv_.notify_one();
-   }
+   // Generic push of a log event
+   void push(const log_event_t& event);
 
-   ~logger() {
-      {
-         std::lock_guard<std::mutex> lock(mutex_);
-         running_ = false;
-      }
-      cv_.notify_one();
-      if (thread_.joinable()) {
-         thread_.join();
-      }
-      out_file_.flush();
-      out_file_.close();
-   }
+   // Specific logging methods that orderbook.cpp calls:
+   void log_price_level_update(
+      uint64_t ts,
+      const char* ord_id,
+      uint32_t price,
+      size_t qty,
+      order_side side
+   );
+
+   void log_trade_report(
+      uint64_t ts,
+      const char* buy_id,
+      uint32_t buy_price,
+      size_t matched_qty,
+      const char* sell_id,
+      uint32_t sell_price
+   );
+
+   void log_modify_order(
+      uint64_t ts,
+      const char* old_id,
+      uint32_t old_price,
+      size_t old_qty,
+      order_side old_side,
+      const char* new_id,
+      uint32_t new_price,
+      size_t new_qty,
+      order_side new_side
+   );
+
+   void log_cancel_order(
+      uint64_t ts,
+      const char* ord_id,
+      uint32_t price,
+      size_t qty,
+      order_side side
+   );
 
 private:
-   std::ofstream out_file_;
+   // The background thread, queue, etc.
    moodycamel::ConcurrentQueue<log_event_t> queue_;
    std::atomic<bool> running_;
    std::thread thread_;
 
+   std::ofstream out_file_;
    std::mutex mutex_;
    std::condition_variable cv_;
 
-   void run() {
-      while (true) {
-         log_event_t ev;
-         while (queue_.try_dequeue(ev)) {
-            out_file_ << "TIMESTAMP=" << ev.timestamp
-                      << " KIND=" << static_cast<int>(ev.kind)
-                      << " PRICE=" << ev.price
-                      << " QTY=" << ev.qty
-                      << " SIDE=" << static_cast<int>(ev.side)
-                      << " PRICE2=" << ev.price_secondary
-                      << " QTY2=" << ev.qty_secondary
-                      << " SIDE2=" << static_cast<int>(ev.side_secondary)
-                      << " ORDID=" << std::string(ev.order_id, ORDER_ID_LEN)
-                      << " ORDID2=" << std::string(ev.order_id_secondary, ORDER_ID_LEN)
-                      << "\n";
-         }
-         out_file_.flush();
-
-         std::unique_lock<std::mutex> lock(mutex_);
-         if (!running_) {
-            break;
-         }
-         cv_.wait_for(lock, std::chrono::milliseconds(500));
-      }
-
-      log_event_t ev;
-      while (queue_.try_dequeue(ev)) {
-         out_file_ << "TIMESTAMP=" << ev.timestamp
-                   << " KIND=" << static_cast<int>(ev.kind)
-                   << " PRICE=" << ev.price
-                   << " QTY=" << ev.qty
-                   << " SIDE=" << static_cast<int>(ev.side)
-                   << " PRICE2=" << ev.price_secondary
-                   << " QTY2=" << ev.qty_secondary
-                   << " SIDE2=" << static_cast<int>(ev.side_secondary)
-                   << " ORDID=" << std::string(ev.order_id, ORDER_ID_LEN)
-                   << " ORDID2=" << std::string(ev.order_id_secondary, ORDER_ID_LEN)
-                   << "\n";
-      }
-      out_file_.flush();
-   }
+   // Worker that consumes the queue
+   void run();
+   // Convert each event to a line of text/JSON, etc.
+   std::string event_to_line(const log_event_t& ev);
 };

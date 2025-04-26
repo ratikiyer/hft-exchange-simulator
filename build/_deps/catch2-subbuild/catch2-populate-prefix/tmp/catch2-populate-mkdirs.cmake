@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-src"
-  "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-build"
-  "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-subbuild/catch2-populate-prefix"
-  "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-subbuild/catch2-populate-prefix/tmp"
-  "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp"
-  "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-subbuild/catch2-populate-prefix/src"
-  "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp"
+  "/app/build/_deps/catch2-src"
+  "/app/build/_deps/catch2-build"
+  "/app/build/_deps/catch2-subbuild/catch2-populate-prefix"
+  "/app/build/_deps/catch2-subbuild/catch2-populate-prefix/tmp"
+  "/app/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp"
+  "/app/build/_deps/catch2-subbuild/catch2-populate-prefix/src"
+  "/app/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/app/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/ratikiyer/Programming/quant/hft-exchange/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/app/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

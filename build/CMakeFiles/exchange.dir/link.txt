@@ -1,1 +1,0 @@
-/usr/bin/clang++ -g -arch arm64 -isysroot /Applications/XCode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk -mmacosx-version-min=15.3 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/exchange.dir/src/main.cpp.o CMakeFiles/exchange.dir/src/orderbook.cpp.o -o exchange 

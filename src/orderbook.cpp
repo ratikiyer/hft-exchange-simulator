@@ -18,8 +18,7 @@ bool orderbook::contains(const order_id_key& id) const {
    return (order_id_lookup_.find(id) != order_id_lookup_.end());
 }
 
-void orderbook::log_event(const log_event_t& event)
-{
+void orderbook::log_event(const log_event_t& event) {
    if (log_) {
       log_->push(event);
    }
@@ -75,15 +74,15 @@ order_result orderbook::add(const order_t& order) {
       update_best_ask_on_insert(order.price);
    }
 
-   log_event_t event {
-      order.timestamp,
-      order.order_id,
-      log_event_kind::ADD,
-      order.price,
-      order.qty,
-      static_cast<order_side>(order.side)
-   };
-   log_event(event);
+   if (log_) {
+      log_->log_price_level_update(
+         order.timestamp,
+         order.order_id,
+         order.price,
+         order.qty,
+         static_cast<order_side>(order.side)
+      );
+   }
 
    return order_result::SUCCESS;
 }
@@ -150,20 +149,21 @@ order_result orderbook::modify(const order_id_key& id, const order_t& new_order)
       loc.location_in_hive = new_it;
    }
 
-   log_event_t event;
-   event.timestamp = new_order.timestamp;
-   std::memcpy(event.order_id, new_order.order_id, ORDER_ID_LEN);
-   event.kind    = log_event_kind::MODIFY;
-   event.price   = new_order.price;
-   event.qty     = new_order.qty;
-   event.side    = static_cast<order_side>(new_order.side);
+   // In order_result orderbook::modify(...)
+   if (log_) {
+      log_->log_modify_order(
+         new_order.timestamp,
+         old_order.order_id,
+         old_order.price,
+         old_order.qty,
+         static_cast<order_side>(old_order.side),
+         new_order.order_id,
+         new_order.price,
+         new_order.qty,
+         static_cast<order_side>(new_order.side)
+      );
+   }
 
-   std::memcpy(event.order_id_secondary, old_order.order_id, ORDER_ID_LEN);
-   event.price_secondary = old_order.price;
-   event.qty_secondary   = old_order.qty;
-   event.side_secondary  = static_cast<order_side>(old_order.side);
-
-   log_event(event);
 
    return order_result::SUCCESS;
 }
@@ -197,15 +197,16 @@ order_result orderbook::cancel(const order_id_key& id) {
 
    order_id_lookup_.erase(it_lookup);
 
-   log_event_t event {
-      stored_order.timestamp,
-      stored_order.order_id,
-      log_event_kind::CANCEL,
-      stored_order.price,
-      stored_order.qty,
-      static_cast<order_side>(stored_order.side)
-   };
-   log_event(event);
+   if (log_) {
+      log_->log_cancel_order(
+         stored_order.timestamp,
+         stored_order.order_id,
+         stored_order.price,
+         stored_order.qty,
+         static_cast<order_side>(stored_order.side)
+      );
+   }
+
 
    return order_result::SUCCESS;
 }
@@ -239,23 +240,18 @@ void orderbook::execute() {
       bid_level.total_qty -= match_qty;
       ask_level.total_qty -= match_qty;
 
+
       uint64_t match_timestamp = get_current_time_ns();
-
-      log_event_t match_event;
-      match_event.timestamp = match_timestamp;
-      match_event.kind = log_event_kind::MATCH;
-
-      std::memcpy(match_event.order_id, bid_order.order_id, ORDER_ID_LEN);
-      match_event.price = best_bid_price_;
-      match_event.qty = match_qty;
-      match_event.side = order_side::BUY;
-
-      std::memcpy(match_event.order_id_secondary, ask_order.order_id, ORDER_ID_LEN);
-      match_event.price_secondary = best_ask_price_;
-      match_event.qty_secondary = match_qty;
-      match_event.side_secondary = order_side::SELL;
-
-      log_event(match_event);
+      if (log_) {
+         log_->log_trade_report(
+            match_timestamp,
+            bid_order.order_id,
+            best_bid_price_,
+            match_qty,
+            ask_order.order_id,
+            best_ask_price_
+         );
+      }
 
       if (bid_order.qty == 0) {
          order_id_key bid_key;
@@ -282,6 +278,7 @@ void orderbook::execute() {
          update_best_ask_on_cancel(best_ask_price_);
       }
    }
+   
 }
 
 inline void orderbook::update_best_bid_on_insert(uint32_t price) {

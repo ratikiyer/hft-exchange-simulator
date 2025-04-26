@@ -5,7 +5,6 @@
 #include <cstring>
 #include <string>
 
-
 constexpr size_t TICKER_LEN = 4;
 constexpr size_t ORDER_ID_LEN = 16;
 
