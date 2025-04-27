@@ -3,14 +3,14 @@ from collections import defaultdict, deque
 from datetime import datetime, timedelta
 
 # Heuristic tags
-HEUR_LIMIT_ADD         = 'limit_add'
-HEUR_CANCEL            = 'cancel'
-HEUR_VISIBLE_FILL      = 'visible_fill'
-HEUR_HIDDEN_FILL       = 'hidden_fill'
-HEUR_LARGE_HIDDEN      = 'large_hidden'
-HEUR_LEVEL_CLEARED     = 'level_cleared'
-HEUR_CANCEL_NO_TRADE   = 'cancel_no_trade'
-HEUR_MODIFY            = 'modify'
+HEUR_LIMIT_ADD = 'limit_add'
+HEUR_CANCEL = 'cancel'
+HEUR_VISIBLE_FILL = 'visible_fill'
+HEUR_HIDDEN_FILL = 'hidden_fill'
+HEUR_LARGE_HIDDEN = 'large_hidden'
+HEUR_LEVEL_CLEARED = 'level_cleared'
+HEUR_CANCEL_NO_TRADE = 'cancel_no_trade'
+HEUR_MODIFY = 'modify'
 HEUR_MULTI_LEVEL_SWEEP = 'multi_level_sweep'
 
 SWEEP_WINDOW_MS = 5
@@ -31,25 +31,29 @@ class OrderBook:
         return prev, size, old_best, best
 
 class EventReconstructor:
-    def __init__(self):
+    def __init__(self, num_users=10):
         self.books = {}
         self.events = defaultdict(list)
         self.recent_trades = deque()
+        self.num_users = num_users
+        self.current_user = 0
+        self.order_book_users = defaultdict(lambda: {'B': defaultdict(deque), 'S': defaultdict(deque)})
 
     def get_book(self, symbol):
         if symbol not in self.books:
             self.books[symbol] = OrderBook()
         return self.books[symbol]
 
-    def record(self, symbol, side, price, size, typ, hidden, timestamp):
+    def record(self, symbol, side, price, size, typ, hidden, timestamp, user_id=None):
         event = {
-            'symbol': symbol,  # <-- Add symbol here
+            'symbol': symbol,
             'side': side,
             'price': price,
             'size': size,
             'type': typ,
             'hidden': hidden,
-            'timestamp': timestamp
+            'timestamp': timestamp,
+            'user_id': user_id
         }
         self.events[symbol].append(event)
 
@@ -66,23 +70,52 @@ class EventReconstructor:
         if len(set(prices)) > 1:
             for ts, sym, sd, pr in relevant:
                 self.events[sym].append({
-                    'symbol': sym,   # <-- Add symbol
+                    'symbol': sym,
                     'side': sd,
                     'price': pr,
                     'size': None,
                     'type': HEUR_MULTI_LEVEL_SWEEP,
                     'hidden': False,
-                    'timestamp': ts
+                    'timestamp': ts,
+                    'user_id': None
                 })
 
-    def _trade_occurred_near(self, symbol, price, ts_str):
-        ts = datetime.fromisoformat(ts_str)
-        for event in self.events[symbol]:
-            if event['type'] in [HEUR_VISIBLE_FILL, HEUR_HIDDEN_FILL] and event['price'] == price:
-                event_ts = datetime.fromisoformat(event['timestamp'])
-                if abs((event_ts - ts).total_seconds() * 1000) <= TRADE_MATCH_WINDOW_MS:
-                    return True
-        return False
+    def record_limit_add(self, symbol, side, price, size, ts):
+        user_id = self.current_user
+        self.current_user = (self.current_user + 1) % self.num_users
+        self.order_book_users[symbol][side][price].append((user_id, size))
+        self.record(symbol, side, price, size, HEUR_LIMIT_ADD, False, ts, user_id)
+
+    def record_cancel(self, symbol, side, price, size, ts, event_type):
+        if self.order_book_users[symbol][side][price]:
+            user_id, user_size = self.order_book_users[symbol][side][price][0]
+            if size >= user_size:
+                self.order_book_users[symbol][side][price].popleft()
+                cancel_size = user_size
+            else:
+                cancel_size = size
+                self.order_book_users[symbol][side][price][0] = (user_id, user_size - size)
+            hidden = False
+        else:
+            user_id = None
+            cancel_size = size
+            hidden = True
+        self.record(symbol, side, price, cancel_size, event_type, hidden, ts, user_id)
+
+    def record_fill(self, symbol, price, size, ts, hidden):
+        if hidden:
+            self.record(symbol, 'S', price, size, HEUR_HIDDEN_FILL, True, ts, None)
+            return
+        while size > 0 and self.order_book_users[symbol]['S'][price]:
+            user_id, user_size = self.order_book_users[symbol]['S'][price][0]
+            if size >= user_size:
+                self.order_book_users[symbol]['S'][price].popleft()
+                fill_size = user_size
+            else:
+                fill_size = size
+                self.order_book_users[symbol]['S'][price][0] = (user_id, user_size - size)
+            size -= fill_size
+            self.record(symbol, 'S', price, fill_size, HEUR_VISIBLE_FILL, False, ts, user_id)
 
     def process_price_update(self, msg):
         symbol = msg['symbol']
@@ -94,12 +127,12 @@ class EventReconstructor:
         prev, new, old_best, new_best = book.update(side, price, size)
 
         if new > prev:
-            self.record(symbol, side, price, new - prev, HEUR_LIMIT_ADD, False, ts)
+            self.record_limit_add(symbol, side, price, new - prev, ts)
         elif new < prev:
             if new == 0:
-                self.record(symbol, side, price, prev, HEUR_LEVEL_CLEARED, False, ts)
+                self.record_cancel(symbol, side, price, prev, ts, HEUR_LEVEL_CLEARED)
             else:
-                self.record(symbol, side, price, prev - new, HEUR_CANCEL, False, ts)
+                self.record_cancel(symbol, side, price, prev - new, ts, HEUR_CANCEL)
 
         old_best_size = book.book[side].get(old_best, 0)
 
@@ -110,7 +143,7 @@ class EventReconstructor:
                       and e['price'] == old_best
                       and abs(datetime.fromisoformat(e['timestamp']) - ts_dt) <= timedelta(milliseconds=1)]
             if not recent and old_best_size > 0:
-                self.record(symbol, side, old_best, old_best_size, HEUR_CANCEL_NO_TRADE, False, ts)
+                self.record_cancel(symbol, side, old_best, old_best_size, ts, HEUR_CANCEL_NO_TRADE)
 
     def process_trade(self, msg):
         symbol = msg['symbol']
@@ -121,14 +154,12 @@ class EventReconstructor:
         available = book.book['S'].get(price, 0)
         hidden = size > available
         book.book['S'][price] = max(0, available - size)
-        heuristic = HEUR_HIDDEN_FILL if hidden else HEUR_VISIBLE_FILL
-        self.record(symbol, 'S', price, size, heuristic, hidden, ts)
+        self.record_fill(symbol, price, size, ts, hidden)
 
-def main(file_path, max_lines=1000000, target_symbol='AAPL', all_symbols=False):
-    recon = EventReconstructor()
+def main(file_path, max_lines=100000, target_symbol='AAPL', all_symbols=False, num_users=10):
+    recon = EventReconstructor(num_users=num_users)
     with open(file_path, 'r') as f:
         for idx, line in enumerate(f):
-            print(f"Processing line {idx}")
             if idx >= max_lines:
                 break
             try:
@@ -142,30 +173,17 @@ def main(file_path, max_lines=1000000, target_symbol='AAPL', all_symbols=False):
             elif msg['type'] == 'trade':
                 recon.process_trade(msg)
 
-    if not all_symbols:
-        print(f"--- Inferred trade events for {target_symbol} ---")
-    else:
-        print(f"--- Inferred trade events for all symbols ---")
-
-    file_name = f"{target_symbol}_events.txt" if not all_symbols else "all_events.txt"
+    file_name = f"{target_symbol}_events_with_users.txt" if not all_symbols else "all_events_with_users.txt"
     with open(file_name, "w") as f:
         if not all_symbols:
             for event in recon.events.get(target_symbol, []):
                 f.write(json.dumps(event) + "\n")
-                f.flush()
         else:
             for sym, evlist in recon.events.items():
                 for event in evlist:
                     f.write(json.dumps(event) + "\n")
-                    f.flush()
 
-    if not all_symbols:
-        for event in recon.events.get(target_symbol, []):
-            print(event)
-    else:
-        for sym, evlist in recon.events.items():
-            for event in evlist:
-                print(event)
+    print(f"Done! Wrote output to {file_name}")
 
 # Example usage:
-main("20250415_113602_iexdata.txt", all_symbols=True)
+main("20250415_113602_iexdata.txt", all_symbols=True, num_users=50)
