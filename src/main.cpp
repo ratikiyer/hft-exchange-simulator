@@ -17,20 +17,20 @@
 #include "types.h"
 
 int main() {
-    boost::asio::io_context io_ctx;
-    logger log("exchange.log");
-    OrderParser parser;
-    MarketDataPublisher publisher(io_ctx, "239.255.0.1", 15000);
-    Exchange ex(&log, &parser, &publisher);
+    // boost::asio::io_context io_ctx;
+    // logger log("exchange.log");
+    // OrderParser parser;
+    // MarketDataPublisher publisher(io_ctx, "239.255.0.1", 15000);
+    // Exchange ex(&log, &parser, &publisher);
 
-    ex.start();                     // start threads
-    ex.add_symbol("ABCD");
-    ex.add_symbol("WXYZ");
+    // ex.start();                     // start threads
+    // ex.add_symbol("ABCD");
+    // ex.add_symbol("WXYZ");
 
-    NetworkServer server(io_ctx, &ex, 12345);
-    server.start();
+    // NetworkServer server(io_ctx, &ex, 12345);
+    // server.start();
 
-    std::cout << "Exchange listening on 0.0.0.0:12345\n";
-    io_ctx.run();
+    // std::cout << "Exchange listening on 0.0.0.0:12345\n";
+    // io_ctx.run();
     return 0;
 }

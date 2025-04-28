@@ -39,10 +39,11 @@ constexpr uint8_t TYPE_CANCEL      = 0x06;
 
 class OrderParser {
 public:
+    virtual ~OrderParser() = default; 
     /**
      * Parse raw data into ParsedOrder. Returns false if invalid or truncated.
      */
-    bool parse_message(const uint8_t* data, size_t len, ParsedOrder& out) const {
+    virtual bool parse_message(const uint8_t* data, size_t len, ParsedOrder& out) {
         using namespace detail;
         if (!data || len < 9) return false;  // need ts(8)+type(1)
 
@@ -101,7 +102,7 @@ public:
         return true;
     }
 
-    order_t convert_to_order(const ParsedOrder& p) const {
+    virtual order_t convert_to_order(const ParsedOrder& p) {
         using namespace detail;
         order_kind   kind      = order_kind::LMT;
         order_status status    = order_status::NEW;

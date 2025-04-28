@@ -1,0 +1,2 @@
+/usr/bin/ar qc libexchange_lib.a CMakeFiles/exchange_lib.dir/src/local_exchange.cpp.o CMakeFiles/exchange_lib.dir/src/order_parser.cpp.o
+/usr/bin/ranlib libexchange_lib.a

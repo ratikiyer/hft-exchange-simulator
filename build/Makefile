@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /app/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
@@ -140,6 +130,19 @@ orderbook_lib/fast:
 .PHONY : orderbook_lib/fast
 
 #=============================================================================
+# Target rules for targets named exchange_lib
+
+# Build rule for target.
+exchange_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exchange_lib
+.PHONY : exchange_lib
+
+# fast build rule for target.
+exchange_lib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange_lib.dir/build.make CMakeFiles/exchange_lib.dir/build
+.PHONY : exchange_lib/fast
+
+#=============================================================================
 # Target rules for targets named hft-exchange
 
 # Build rule for target.
@@ -151,6 +154,32 @@ hft-exchange: cmake_check_build_system
 hft-exchange/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hft-exchange.dir/build.make CMakeFiles/hft-exchange.dir/build
 .PHONY : hft-exchange/fast
+
+#=============================================================================
+# Target rules for targets named client
+
+# Build rule for target.
+client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
+.PHONY : client
+
+# fast build rule for target.
+client/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
+
+#=============================================================================
+# Target rules for targets named test_local_exchange
+
+# Build rule for target.
+test_local_exchange: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_local_exchange
+.PHONY : test_local_exchange
+
+# fast build rule for target.
+test_local_exchange/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local_exchange.dir/build.make CMakeFiles/test_local_exchange.dir/build
+.PHONY : test_local_exchange/fast
 
 #=============================================================================
 # Target rules for targets named test-orderbook
@@ -190,6 +219,54 @@ Catch2WithMain: cmake_check_build_system
 Catch2WithMain/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
 .PHONY : Catch2WithMain/fast
+
+src/client.o: src/client.cpp.o
+.PHONY : src/client.o
+
+# target to build an object file
+src/client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.o
+.PHONY : src/client.cpp.o
+
+src/client.i: src/client.cpp.i
+.PHONY : src/client.i
+
+# target to preprocess a source file
+src/client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.i
+.PHONY : src/client.cpp.i
+
+src/client.s: src/client.cpp.s
+.PHONY : src/client.s
+
+# target to generate assembly for a file
+src/client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.s
+.PHONY : src/client.cpp.s
+
+src/local_exchange.o: src/local_exchange.cpp.o
+.PHONY : src/local_exchange.o
+
+# target to build an object file
+src/local_exchange.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange_lib.dir/build.make CMakeFiles/exchange_lib.dir/src/local_exchange.cpp.o
+.PHONY : src/local_exchange.cpp.o
+
+src/local_exchange.i: src/local_exchange.cpp.i
+.PHONY : src/local_exchange.i
+
+# target to preprocess a source file
+src/local_exchange.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange_lib.dir/build.make CMakeFiles/exchange_lib.dir/src/local_exchange.cpp.i
+.PHONY : src/local_exchange.cpp.i
+
+src/local_exchange.s: src/local_exchange.cpp.s
+.PHONY : src/local_exchange.s
+
+# target to generate assembly for a file
+src/local_exchange.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange_lib.dir/build.make CMakeFiles/exchange_lib.dir/src/local_exchange.cpp.s
+.PHONY : src/local_exchange.cpp.s
 
 src/logger.o: src/logger.cpp.o
 .PHONY : src/logger.o
@@ -239,6 +316,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hft-exchange.dir/build.make CMakeFiles/hft-exchange.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/order_parser.o: src/order_parser.cpp.o
+.PHONY : src/order_parser.o
+
+# target to build an object file
+src/order_parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange_lib.dir/build.make CMakeFiles/exchange_lib.dir/src/order_parser.cpp.o
+.PHONY : src/order_parser.cpp.o
+
+src/order_parser.i: src/order_parser.cpp.i
+.PHONY : src/order_parser.i
+
+# target to preprocess a source file
+src/order_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange_lib.dir/build.make CMakeFiles/exchange_lib.dir/src/order_parser.cpp.i
+.PHONY : src/order_parser.cpp.i
+
+src/order_parser.s: src/order_parser.cpp.s
+.PHONY : src/order_parser.s
+
+# target to generate assembly for a file
+src/order_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange_lib.dir/build.make CMakeFiles/exchange_lib.dir/src/order_parser.cpp.s
+.PHONY : src/order_parser.cpp.s
+
 src/orderbook.o: src/orderbook.cpp.o
 .PHONY : src/orderbook.o
 
@@ -262,6 +363,30 @@ src/orderbook.s: src/orderbook.cpp.s
 src/orderbook.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook_lib.dir/build.make CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.s
 .PHONY : src/orderbook.cpp.s
+
+tests/test_local_exchange.o: tests/test_local_exchange.cpp.o
+.PHONY : tests/test_local_exchange.o
+
+# target to build an object file
+tests/test_local_exchange.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local_exchange.dir/build.make CMakeFiles/test_local_exchange.dir/tests/test_local_exchange.cpp.o
+.PHONY : tests/test_local_exchange.cpp.o
+
+tests/test_local_exchange.i: tests/test_local_exchange.cpp.i
+.PHONY : tests/test_local_exchange.i
+
+# target to preprocess a source file
+tests/test_local_exchange.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local_exchange.dir/build.make CMakeFiles/test_local_exchange.dir/tests/test_local_exchange.cpp.i
+.PHONY : tests/test_local_exchange.cpp.i
+
+tests/test_local_exchange.s: tests/test_local_exchange.cpp.s
+.PHONY : tests/test_local_exchange.s
+
+# target to generate assembly for a file
+tests/test_local_exchange.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local_exchange.dir/build.make CMakeFiles/test_local_exchange.dir/tests/test_local_exchange.cpp.s
+.PHONY : tests/test_local_exchange.cpp.s
 
 tests/test_orderbook.o: tests/test_orderbook.cpp.o
 .PHONY : tests/test_orderbook.o
@@ -295,21 +420,35 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... Catch2"
 	@echo "... Catch2WithMain"
+	@echo "... client"
+	@echo "... exchange_lib"
 	@echo "... hft-exchange"
 	@echo "... orderbook_lib"
 	@echo "... test-orderbook"
+	@echo "... test_local_exchange"
+	@echo "... src/client.o"
+	@echo "... src/client.i"
+	@echo "... src/client.s"
+	@echo "... src/local_exchange.o"
+	@echo "... src/local_exchange.i"
+	@echo "... src/local_exchange.s"
 	@echo "... src/logger.o"
 	@echo "... src/logger.i"
 	@echo "... src/logger.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/order_parser.o"
+	@echo "... src/order_parser.i"
+	@echo "... src/order_parser.s"
 	@echo "... src/orderbook.o"
 	@echo "... src/orderbook.i"
 	@echo "... src/orderbook.s"
+	@echo "... tests/test_local_exchange.o"
+	@echo "... tests/test_local_exchange.i"
+	@echo "... tests/test_local_exchange.s"
 	@echo "... tests/test_orderbook.o"
 	@echo "... tests/test_orderbook.i"
 	@echo "... tests/test_orderbook.s"

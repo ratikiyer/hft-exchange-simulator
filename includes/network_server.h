@@ -5,6 +5,7 @@
 #include <boost/asio.hpp>
 
 constexpr unsigned int BUFFER_SIZE = 4096;
+class Exchange;
 
 class NetworkServer {
 public:
