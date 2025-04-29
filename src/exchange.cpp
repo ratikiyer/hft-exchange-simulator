@@ -5,8 +5,60 @@
 #include <cstring>
 #include <iostream>
 #include <utility>
+#include <unordered_map>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cctype>
 
 using namespace std::chrono_literals;
+
+// ----------------------------------------------------------------
+// 1) Define the buckets exactly as on your chart
+//    (Not strictly required at runtime, but kept for reference.)
+// ----------------------------------------------------------------
+static const std::vector<std::string> BUCKETS = {
+    "A","B","C","D",
+    "EA-E","EF-Z",
+    "F","G","H",
+    "IA-E","IF-Z",
+    "J","K","L","M","N","O",
+    "PA-E","PF-Z",
+    "Q","R",
+    "SA-E","SF-N","SO-Z",
+    "T","U","V","W","X","Y","Z"
+};
+
+// ----------------------------------------------------------------
+// 2) Helper: map a ticker → bucket label
+// ----------------------------------------------------------------
+static std::string get_bucket(const std::string& sym) {
+    if (sym.empty()) return "";
+    char c0 = std::toupper(sym[0]);
+    char c1 = sym.size()>1 ? std::toupper(sym[1]) : '\0';
+
+    switch (c0) {
+      case 'E': return (c1>='A' && c1<='E') ? "EA-E" : "EF-Z";
+      case 'I': return (c1>='A' && c1<='E') ? "IA-E" : "IF-Z";
+      case 'P': return (c1>='A' && c1<='E') ? "PA-E" : "PF-Z";
+      case 'S':
+        if      (c1>='A' && c1<='E') return "SA-E";
+        else if (c1>='F' && c1<='N') return "SF-N";
+        else                          return "SO-Z";
+      default:
+        if (c0>='A' && c0<='Z')
+            return std::string(1, c0);
+        return "";
+    }
+}
+
+// ----------------------------------------------------------------
+// 3) Per‐bucket storage of per‐ticker orderbooks
+// ----------------------------------------------------------------
+static std::unordered_map<
+    std::string,                                 // bucket label
+    std::unordered_map<std::string, orderbook>   // symbol → orderbook
+> bucket_books;
 
 Exchange::Exchange(logger* logger_ptr,
                    OrderParser* parser_ptr,

@@ -93,9 +93,9 @@ test__orderbook_EXTERNAL_OBJECTS =
 test-orderbook: CMakeFiles/test-orderbook.dir/tests/test_orderbook.cpp.o
 test-orderbook: CMakeFiles/test-orderbook.dir/build.make
 test-orderbook: liborderbook_lib.a
-test-orderbook: _deps/catch2-build/src/libCatch2Maind.a
+test-orderbook: _deps/catch2-build/src/libCatch2Main.a
 test-orderbook: /usr/lib/aarch64-linux-gnu/libboost_system.so.1.83.0
-test-orderbook: _deps/catch2-build/src/libCatch2d.a
+test-orderbook: _deps/catch2-build/src/libCatch2.a
 test-orderbook: CMakeFiles/test-orderbook.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test-orderbook"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test-orderbook.dir/link.txt --verbose=$(VERBOSE)

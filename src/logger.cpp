@@ -13,12 +13,21 @@ logger::logger(const std::string& filename) : running_(true) {
 }
 
 logger::~logger() {
-    std::lock_guard<std::mutex> lock(mutex_);
-    running_ = false;
-    cv_.notify_one();
+    // 1) Flip the flag under lock
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      running_ = false;
+    }
+
+    // 2) Wake up the worker (use notify_all in case you ever have >1 waiter)
+    cv_.notify_all();
+
+    // 3) Now it can wake up, see running_==false, and exit run()
     if (thread_.joinable()) {
         thread_.join();
     }
+
+    // 4) Flush & close file
     out_file_.flush();
     out_file_.close();
 }

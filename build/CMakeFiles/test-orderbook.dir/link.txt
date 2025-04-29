@@ -1,1 +1,1 @@
-/usr/bin/c++ -g "CMakeFiles/test-orderbook.dir/tests/test_orderbook.cpp.o" -o test-orderbook  liborderbook_lib.a _deps/catch2-build/src/libCatch2Maind.a /usr/lib/aarch64-linux-gnu/libboost_system.so.1.83.0 _deps/catch2-build/src/libCatch2d.a 
+/usr/bin/c++ "CMakeFiles/test-orderbook.dir/tests/test_orderbook.cpp.o" -o test-orderbook  liborderbook_lib.a _deps/catch2-build/src/libCatch2Main.a /usr/lib/aarch64-linux-gnu/libboost_system.so.1.83.0 _deps/catch2-build/src/libCatch2.a 

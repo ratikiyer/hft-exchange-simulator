@@ -93,6 +93,8 @@ hft__exchange_EXTERNAL_OBJECTS =
 hft-exchange: CMakeFiles/hft-exchange.dir/src/main.cpp.o
 hft-exchange: CMakeFiles/hft-exchange.dir/build.make
 hft-exchange: liborderbook_lib.a
+hft-exchange: libexchange_lib.a
+hft-exchange: liborderbook_lib.a
 hft-exchange: /usr/lib/aarch64-linux-gnu/libboost_system.so.1.83.0
 hft-exchange: CMakeFiles/hft-exchange.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable hft-exchange"

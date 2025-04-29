@@ -1,649 +1,673 @@
 [
 {
   "directory": "/app/build",
-  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -g -std=gnu++20 -o CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o -c /app/src/orderbook.cpp",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -std=gnu++20 -o CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o -c /app/src/orderbook.cpp",
   "file": "/app/src/orderbook.cpp",
   "output": "CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o"
 },
 {
   "directory": "/app/build",
-  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -g -std=gnu++20 -o CMakeFiles/orderbook_lib.dir/src/logger.cpp.o -c /app/src/logger.cpp",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -std=gnu++20 -o CMakeFiles/orderbook_lib.dir/src/logger.cpp.o -c /app/src/logger.cpp",
   "file": "/app/src/logger.cpp",
   "output": "CMakeFiles/orderbook_lib.dir/src/logger.cpp.o"
 },
 {
   "directory": "/app/build",
-  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -g -std=gnu++20 -o CMakeFiles/hft-exchange.dir/src/main.cpp.o -c /app/src/main.cpp",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -I/app/src -std=gnu++20 -o CMakeFiles/exchange_lib.dir/src/local_exchange.cpp.o -c /app/src/local_exchange.cpp",
+  "file": "/app/src/local_exchange.cpp",
+  "output": "CMakeFiles/exchange_lib.dir/src/local_exchange.cpp.o"
+},
+{
+  "directory": "/app/build",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -I/app/src -std=gnu++20 -o CMakeFiles/exchange_lib.dir/src/order_parser.cpp.o -c /app/src/order_parser.cpp",
+  "file": "/app/src/order_parser.cpp",
+  "output": "CMakeFiles/exchange_lib.dir/src/order_parser.cpp.o"
+},
+{
+  "directory": "/app/build",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -I/app/src -std=gnu++20 -o CMakeFiles/hft-exchange.dir/src/main.cpp.o -c /app/src/main.cpp",
   "file": "/app/src/main.cpp",
   "output": "CMakeFiles/hft-exchange.dir/src/main.cpp.o"
 },
 {
   "directory": "/app/build",
-  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -o CMakeFiles/test-orderbook.dir/tests/test_orderbook.cpp.o -c /app/tests/test_orderbook.cpp",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -I/app/src -std=gnu++20 -o CMakeFiles/client.dir/src/client.cpp.o -c /app/src/client.cpp",
+  "file": "/app/src/client.cpp",
+  "output": "CMakeFiles/client.dir/src/client.cpp.o"
+},
+{
+  "directory": "/app/build",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -I/app/src -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -o CMakeFiles/test_local_exchange.dir/tests/test_local_exchange.cpp.o -c /app/tests/test_local_exchange.cpp",
+  "file": "/app/tests/test_local_exchange.cpp",
+  "output": "CMakeFiles/test_local_exchange.dir/tests/test_local_exchange.cpp.o"
+},
+{
+  "directory": "/app/build",
+  "command": "/usr/bin/c++ -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -I/app/includes -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -o CMakeFiles/test-orderbook.dir/tests/test_orderbook.cpp.o -c /app/tests/test_orderbook.cpp",
   "file": "/app/tests/test_orderbook.cpp",
   "output": "CMakeFiles/test-orderbook.dir/tests/test_orderbook.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/catch_chronometer.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/catch_chronometer.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/catch_chronometer.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/catch_chronometer.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/benchmark/catch_chronometer.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/benchmark/catch_chronometer.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_benchmark_function.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_benchmark_function.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_benchmark_function.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_benchmark_function.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_benchmark_function.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_benchmark_function.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_run_for_at_least.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_run_for_at_least.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_run_for_at_least.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_run_for_at_least.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_run_for_at_least.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_run_for_at_least.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_stats.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_stats.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_stats.cpp.o -c /app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_stats.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_stats.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_stats.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/generators/catch_generator_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/generators/catch_generator_exception.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/generators/catch_generator_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/generators/catch_generator_exception.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/generators/catch_generator_exception.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/generators/catch_generator_exception.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/generators/catch_generators.cpp.o -c /app/build/_deps/catch2-src/src/catch2/generators/catch_generators.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/generators/catch_generators.cpp.o -c /app/build/_deps/catch2-src/src/catch2/generators/catch_generators.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/generators/catch_generators.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/generators/catch_generators.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/generators/catch_generators_random.cpp.o -c /app/build/_deps/catch2-src/src/catch2/generators/catch_generators_random.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/generators/catch_generators_random.cpp.o -c /app/build/_deps/catch2-src/src/catch2/generators/catch_generators_random.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/generators/catch_generators_random.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/generators/catch_generators_random.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_automake.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_automake.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_automake.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_automake.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_automake.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_automake.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_common_base.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_common_base.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_common_base.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_common_base.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_common_base.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_common_base.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_compact.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_compact.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_compact.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_compact.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_compact.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_compact.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_console.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_console.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_console.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_console.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_console.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_console.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_cumulative_base.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_cumulative_base.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_cumulative_base.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_cumulative_base.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_cumulative_base.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_cumulative_base.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_event_listener.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_event_listener.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_event_listener.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_event_listener.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_event_listener.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_event_listener.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_helpers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_helpers.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_helpers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_helpers.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_helpers.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_helpers.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_junit.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_junit.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_junit.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_junit.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_junit.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_junit.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_multi.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_multi.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_multi.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_multi.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_multi.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_multi.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_registrars.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_registrars.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_registrars.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_registrars.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_registrars.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_registrars.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_sonarqube.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_sonarqube.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_sonarqube.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_sonarqube.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_sonarqube.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_sonarqube.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_streaming_base.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_streaming_base.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_streaming_base.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_streaming_base.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_streaming_base.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_streaming_base.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_tap.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_tap.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_tap.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_tap.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_tap.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_tap.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_teamcity.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_teamcity.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_teamcity.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_teamcity.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_teamcity.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_teamcity.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_xml.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_xml.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_xml.cpp.o -c /app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_xml.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_xml.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_xml.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_capture.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_capture.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_capture.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_capture.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_capture.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_capture.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_config.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_config.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_config.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_config.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_config.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_config.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_exception.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_exception.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_exception.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_exception.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_generatortracker.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_generatortracker.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_generatortracker.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_generatortracker.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_generatortracker.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_generatortracker.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_registry_hub.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_registry_hub.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_registry_hub.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_registry_hub.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_registry_hub.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_registry_hub.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_factory.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_factory.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_factory.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_factory.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_factory.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_factory.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_registry.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_registry.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_registry.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_registry.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_testcase.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_testcase.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_testcase.cpp.o -c /app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_testcase.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_testcase.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_testcase.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_approx.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_approx.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_approx.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_approx.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_approx.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_approx.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_assertion_result.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_assertion_result.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_assertion_result.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_assertion_result.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_assertion_result.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_assertion_result.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_config.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_config.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_config.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_config.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_config.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_config.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_get_random_seed.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_get_random_seed.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_get_random_seed.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_get_random_seed.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_get_random_seed.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_get_random_seed.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_message.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_message.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_message.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_message.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_message.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_message.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_registry_hub.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_registry_hub.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_registry_hub.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_registry_hub.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_registry_hub.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_registry_hub.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_session.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_session.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_session.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_session.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_session.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_session.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_tag_alias_autoregistrar.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_tag_alias_autoregistrar.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_tag_alias_autoregistrar.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_tag_alias_autoregistrar.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_tag_alias_autoregistrar.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_tag_alias_autoregistrar.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_test_case_info.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_test_case_info.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_test_case_info.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_test_case_info.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_test_case_info.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_test_case_info.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_test_spec.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_test_spec.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_test_spec.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_test_spec.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_test_spec.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_test_spec.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_timer.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_timer.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_timer.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_timer.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_timer.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_timer.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_tostring.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_tostring.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_tostring.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_tostring.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_tostring.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_tostring.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_totals.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_totals.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_totals.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_totals.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_totals.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_totals.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_version.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_version.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/catch_version.cpp.o -c /app/build/_deps/catch2-src/src/catch2/catch_version.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/catch_version.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_version.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_assertion_handler.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_assertion_handler.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_assertion_handler.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_assertion_handler.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_assertion_handler.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_assertion_handler.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_case_insensitive_comparisons.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_case_insensitive_comparisons.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_case_insensitive_comparisons.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_case_insensitive_comparisons.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_case_insensitive_comparisons.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_case_insensitive_comparisons.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_clara.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_clara.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_clara.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_clara.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_clara.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_clara.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_commandline.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_commandline.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_commandline.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_commandline.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_commandline.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_commandline.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_console_colour.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_console_colour.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_console_colour.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_console_colour.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_console_colour.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_console_colour.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_context.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_context.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_context.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_context.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_context.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_context.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_debug_console.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_debug_console.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_debug_console.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_debug_console.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_debug_console.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_debug_console.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_debugger.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_debugger.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_debugger.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_debugger.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_debugger.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_debugger.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_decomposer.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_decomposer.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_decomposer.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_decomposer.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_decomposer.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_decomposer.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_enforce.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_enforce.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_enforce.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_enforce.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_enforce.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_enforce.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_enum_values_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_enum_values_registry.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_enum_values_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_enum_values_registry.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_enum_values_registry.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_enum_values_registry.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_errno_guard.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_errno_guard.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_errno_guard.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_errno_guard.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_errno_guard.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_errno_guard.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_exception_translator_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_exception_translator_registry.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_exception_translator_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_exception_translator_registry.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_exception_translator_registry.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_exception_translator_registry.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_fatal_condition_handler.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_fatal_condition_handler.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_fatal_condition_handler.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_fatal_condition_handler.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_fatal_condition_handler.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_fatal_condition_handler.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_floating_point_helpers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_floating_point_helpers.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_floating_point_helpers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_floating_point_helpers.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_floating_point_helpers.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_floating_point_helpers.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_getenv.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_getenv.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_getenv.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_getenv.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_getenv.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_getenv.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_istream.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_istream.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_istream.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_istream.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_istream.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_istream.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_lazy_expr.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_lazy_expr.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_lazy_expr.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_lazy_expr.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_lazy_expr.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_lazy_expr.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_leak_detector.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_leak_detector.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_leak_detector.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_leak_detector.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_leak_detector.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_leak_detector.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_list.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_list.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_list.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_list.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_list.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_list.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_message_info.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_message_info.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_message_info.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_message_info.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_message_info.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_message_info.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_output_redirect.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_output_redirect.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_output_redirect.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_output_redirect.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_output_redirect.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_output_redirect.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_parse_numbers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_parse_numbers.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_parse_numbers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_parse_numbers.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_parse_numbers.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_parse_numbers.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_polyfills.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_polyfills.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_polyfills.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_polyfills.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_polyfills.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_polyfills.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_random_number_generator.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_random_number_generator.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_random_number_generator.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_random_number_generator.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_random_number_generator.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_random_number_generator.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_random_seed_generation.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_random_seed_generation.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_random_seed_generation.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_random_seed_generation.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_random_seed_generation.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_random_seed_generation.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_reporter_registry.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_reporter_registry.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_reporter_registry.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_registry.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_spec_parser.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_reporter_spec_parser.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_spec_parser.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_reporter_spec_parser.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_reporter_spec_parser.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_spec_parser.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_result_type.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_result_type.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_result_type.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_result_type.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_result_type.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_result_type.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_reusable_string_stream.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_reusable_string_stream.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_reusable_string_stream.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_reusable_string_stream.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_reusable_string_stream.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_reusable_string_stream.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_run_context.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_run_context.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_run_context.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_run_context.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_run_context.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_run_context.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_section.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_section.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_section.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_section.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_section.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_section.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_singletons.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_singletons.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_singletons.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_singletons.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_singletons.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_singletons.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_source_line_info.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_source_line_info.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_source_line_info.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_source_line_info.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_source_line_info.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_source_line_info.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_startup_exception_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_startup_exception_registry.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_startup_exception_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_startup_exception_registry.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_startup_exception_registry.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_startup_exception_registry.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_stdstreams.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_stdstreams.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_stdstreams.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_stdstreams.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_stdstreams.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_stdstreams.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_string_manip.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_string_manip.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_string_manip.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_string_manip.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_string_manip.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_string_manip.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_stringref.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_stringref.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_stringref.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_stringref.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_stringref.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_stringref.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_tag_alias_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_tag_alias_registry.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_tag_alias_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_tag_alias_registry.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_tag_alias_registry.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_tag_alias_registry.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_info_hasher.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_info_hasher.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_info_hasher.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_info_hasher.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_info_hasher.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_info_hasher.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_registry_impl.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_registry_impl.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_registry_impl.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_registry_impl.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_registry_impl.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_registry_impl.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_tracker.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_tracker.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_tracker.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_tracker.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_test_case_tracker.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_tracker.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_failure_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_failure_exception.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_failure_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_failure_exception.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_test_failure_exception.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_failure_exception.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_registry.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_registry.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_registry.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_test_registry.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_registry.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_spec_parser.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_spec_parser.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_spec_parser.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_test_spec_parser.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_test_spec_parser.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_spec_parser.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_textflow.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_textflow.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_textflow.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_textflow.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_textflow.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_textflow.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_uncaught_exceptions.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_uncaught_exceptions.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_uncaught_exceptions.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_uncaught_exceptions.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_uncaught_exceptions.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_uncaught_exceptions.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_wildcard_pattern.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_wildcard_pattern.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_wildcard_pattern.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_wildcard_pattern.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_wildcard_pattern.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_wildcard_pattern.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_xmlwriter.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_xmlwriter.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/internal/catch_xmlwriter.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_xmlwriter.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_xmlwriter.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_xmlwriter.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_container_properties.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_container_properties.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_container_properties.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_container_properties.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_container_properties.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_container_properties.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_exception.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_exception.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_exception.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_exception.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_exception.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_floating_point.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_floating_point.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_floating_point.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_floating_point.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_floating_point.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_floating_point.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_predicate.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_predicate.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_predicate.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_predicate.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_predicate.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_predicate.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_quantifiers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_quantifiers.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_quantifiers.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_quantifiers.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_quantifiers.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_quantifiers.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_string.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_string.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_string.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_string.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_string.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_string.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_templated.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_templated.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_templated.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_templated.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_templated.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_templated.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/internal/catch_matchers_impl.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/internal/catch_matchers_impl.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2.dir/catch2/matchers/internal/catch_matchers_impl.cpp.o -c /app/build/_deps/catch2-src/src/catch2/matchers/internal/catch_matchers_impl.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/matchers/internal/catch_matchers_impl.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/internal/catch_matchers_impl.cpp.o"
 },
 {
   "directory": "/app/build/_deps/catch2-build/src",
-  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2WithMain.dir/catch2/internal/catch_main.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_main.cpp",
+  "command": "/usr/bin/c++  -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/= -o CMakeFiles/Catch2WithMain.dir/catch2/internal/catch_main.cpp.o -c /app/build/_deps/catch2-src/src/catch2/internal/catch_main.cpp",
   "file": "/app/build/_deps/catch2-src/src/catch2/internal/catch_main.cpp",
   "output": "_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/catch2/internal/catch_main.cpp.o"
 }

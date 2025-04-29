@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/app/build/_deps/catch2-src/src/catch2/.. -I/app/build/_deps/catch2-build/generated-includes
 
-CXX_FLAGS = -g -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/=
+CXX_FLAGS = -std=gnu++20 -ffile-prefix-map=/app/build/_deps/catch2-src/=
 

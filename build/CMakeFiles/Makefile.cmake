@@ -138,7 +138,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/orderbook_lib.dir/DependInfo.cmake"
+  "CMakeFiles/exchange_lib.dir/DependInfo.cmake"
   "CMakeFiles/hft-exchange.dir/DependInfo.cmake"
+  "CMakeFiles/client.dir/DependInfo.cmake"
+  "CMakeFiles/test_local_exchange.dir/DependInfo.cmake"
   "CMakeFiles/test-orderbook.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/DependInfo.cmake"
