@@ -1,15 +1,9 @@
 // network_server.cpp
 #include "network_server.h"
-#include "exchange.h"
-
 #include <iostream>
-#include <boost/asio/ip/tcp.hpp>
+#include <boost/system/error_code.hpp>
 
 using boost::asio::ip::tcp;
-
-// message length is always 37 bytes
-static constexpr std::size_t FULL_MSG_LEN =
-    sizeof(uint64_t) + 1 + ORDER_ID_LEN + TICKER_LEN + 4 + 4;
 
 NetworkServer::NetworkServer(boost::asio::io_context& io_ctx,
                              Exchange* exchange,
@@ -29,24 +23,33 @@ void NetworkServer::stop() {
     running_ = false;
     boost::system::error_code ec;
     acceptor_.close(ec);
+    if (ec) {
+        std::cerr << "Error closing acceptor: " << ec.message() << "\n";
+    }
 }
 
 void NetworkServer::do_accept() {
     auto sock = std::make_shared<tcp::socket>(io_context_);
     acceptor_.async_accept(
         *sock,
-        [this, sock](auto ec) {
+        [this, sock](const boost::system::error_code& ec) {
             if (!ec && running_) {
-                auto session = std::make_shared<Session>(std::move(*sock), exchange_);
-                session->start_reading();
-                do_accept();
+                // immediately spin up a session
+                std::make_shared<Session>(std::move(*sock), exchange_)
+                    ->start_reading();
             }
             else if (ec && running_) {
                 std::cerr << "Accept error: " << ec.message() << "\n";
             }
+            // re-arm accept loop
+            if (running_) {
+                do_accept();
+            }
         }
     );
 }
+
+// ── Session Implementation ─────────────────────────────────────────────
 
 NetworkServer::Session::Session(tcp::socket socket, Exchange* exchange)
   : socket_(std::move(socket)),
@@ -59,14 +62,17 @@ void NetworkServer::Session::start_reading() {
     auto self = shared_from_this();
     boost::asio::async_read(
         socket_,
-        boost::asio::buffer(buffer_, FULL_MSG_LEN),
-        [this, self](auto ec, std::size_t n) {
-            if (!ec && n == FULL_MSG_LEN) {
-                exchange_->on_msg_received(buffer_.data(), n);
+        boost::asio::buffer(buffer_.data(), buffer_.size()),
+        [this, self](const boost::system::error_code& ec, std::size_t n) {
+            if (!ec && n == buffer_.size()) {
+                // dispatch to your exchange
+                exchange_->on_msg_received(
+                    reinterpret_cast<const uint8_t*>(buffer_.data()), n);
+                // read the next message
                 start_reading();
             }
             else if (ec == boost::asio::error::eof) {
-                // clean close
+                // peer closed cleanly
             }
             else {
                 std::cerr << "Session read error: " << ec.message() << "\n";
