@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libexchange_lib.a CMakeFiles/exchange_lib.dir/src/local_exchange.cpp.o CMakeFiles/exchange_lib.dir/src/order_parser.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libexchange_lib.a
