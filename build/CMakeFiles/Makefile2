@@ -228,10 +228,10 @@ CMakeFiles/client.dir/clean:
 # Target rules for target CMakeFiles/test_local_exchange.dir
 
 # All Build rule for target.
+CMakeFiles/test_local_exchange.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 CMakeFiles/test_local_exchange.dir/all: CMakeFiles/orderbook_lib.dir/all
 CMakeFiles/test_local_exchange.dir/all: CMakeFiles/exchange_lib.dir/all
 CMakeFiles/test_local_exchange.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
-CMakeFiles/test_local_exchange.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local_exchange.dir/build.make CMakeFiles/test_local_exchange.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local_exchange.dir/build.make CMakeFiles/test_local_exchange.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/app/build/CMakeFiles --progress-num=99,100 "Built target test_local_exchange"
@@ -257,9 +257,9 @@ CMakeFiles/test_local_exchange.dir/clean:
 # Target rules for target CMakeFiles/test-orderbook.dir
 
 # All Build rule for target.
+CMakeFiles/test-orderbook.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 CMakeFiles/test-orderbook.dir/all: CMakeFiles/orderbook_lib.dir/all
 CMakeFiles/test-orderbook.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
-CMakeFiles/test-orderbook.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test-orderbook.dir/build.make CMakeFiles/test-orderbook.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test-orderbook.dir/build.make CMakeFiles/test-orderbook.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/app/build/CMakeFiles --progress-num=97,98 "Built target test-orderbook"

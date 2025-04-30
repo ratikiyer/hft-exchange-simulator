@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
       git \
       libboost-dev \
       libboost-system-dev \
+      catch2 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
