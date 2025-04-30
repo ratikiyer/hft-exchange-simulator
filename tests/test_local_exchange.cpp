@@ -72,7 +72,7 @@ int main() {
 
     // 1) Hook up parser & real logger
     TestParser    parser(seq);
-    logger        log("test.log");
+    logger        log("../logs/local_exchange.log");
 
     // 2) Start exchange (auto-creates bucket/book on first message)
     Exchange exch(&log, &parser);
