@@ -4,7 +4,10 @@
 #include <array>
 #include <cstddef>
 #include <boost/asio.hpp>
-#include "exchange.h"
+#include <cstdint>
+#include "types.h"
+
+class Exchange; 
 
 using boost::asio::ip::tcp;
 
