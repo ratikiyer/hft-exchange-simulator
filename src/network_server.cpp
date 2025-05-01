@@ -1,6 +1,8 @@
 // network_server.cpp
 #include "network_server.h"
+#include "exchange.h"
 #include <iostream>
+#include <memory>
 #include <boost/system/error_code.hpp>
 
 using boost::asio::ip::tcp;
@@ -60,13 +62,12 @@ NetworkServer::Session::Session(tcp::socket socket, Exchange* exchange)
 
 void NetworkServer::Session::start_reading() {
     auto self = shared_from_this();
-    boost::asio::async_read(
-        socket_,
-        boost::asio::buffer(buffer_.data(), buffer_.size()),
+    socket_.async_read_some(
+    boost::asio::buffer(buffer_.data(), buffer_.size()),
         [this, self](const boost::system::error_code& ec, std::size_t n) {
             if (!ec && n == buffer_.size()) {
                 // dispatch to your exchange
-                exchange_->on_msg_received(
+                exchange->on_msg_received(
                     reinterpret_cast<const uint8_t*>(buffer_.data()), n);
                 // read the next message
                 start_reading();
