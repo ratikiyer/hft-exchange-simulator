@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/kevinxu/hft-exchange/build/cmake_install.cmake",
+		"/Users/kevinxu/hft-exchange/build/_deps/catch2-build/cmake_install.cmake",
+		"/Users/kevinxu/hft-exchange/build/_deps/catch2-build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
