@@ -5,6 +5,9 @@
 #include <sys/types.h>
 #include <chrono>
 
+static constexpr size_t INITIAL_ORDERS_CAPACITY = 1000;
+static constexpr size_t INITIAL_PRICE_LEVELS = 100;
+
 static inline uint64_t get_current_time_ns() {
    using namespace std::chrono;
    return static_cast<uint64_t>(
@@ -40,33 +43,50 @@ std::optional<uint32_t> orderbook::best_ask() const {
    }
 }
 
+orderbook::orderbook(logger* log) 
+    : log_(log)
+    , best_bid_price_(0)
+    , best_ask_price_(MAX_PRICE + 1) {
+    order_id_lookup_.reserve(INITIAL_ORDERS_CAPACITY);
+    for (auto& level : bids_) {
+        level.orders.reserve(INITIAL_ORDERS_CAPACITY);
+    }
+    for (auto& level : asks_) {
+        level.orders.reserve(INITIAL_ORDERS_CAPACITY);
+    }
+}
+
 order_result orderbook::add(const order_t& order) {
    order_id_key key;
    std::memcpy(key.order_id, order.order_id, ORDER_ID_LEN);
 
-   if (order_id_lookup_.contains(key)) {
+   auto [it, inserted] = order_id_lookup_.try_emplace(key);
+   if (!inserted) {
       return order_result::DUPLICATE_ID;
    }
    
-   if (order.side != static_cast<uint8_t>(order_side::BUY) && order.side != static_cast<uint8_t>(order_side::SELL)) {
+   if (order.side != static_cast<uint8_t>(order_side::BUY) && 
+       order.side != static_cast<uint8_t>(order_side::SELL)) {
+      order_id_lookup_.erase(it);
       return order_result::INVALID_SIDE;
    }
 
    order_side side = static_cast<order_side>(order.side);
 
    if (order.price > MAX_PRICE) {
+      order_id_lookup_.erase(it);
       return order_result::INVALID_PRICE;
    }
 
    price_level& level = (side == order_side::BUY ? bids_[order.price] : asks_[order.price]);
-
-   auto it = level.orders.insert(order);
+   
+   auto order_it = level.orders.emplace(order);
    level.total_qty += order.qty;
 
    order_location loc;
    loc.price = order.price;
-   loc.location_in_hive = it;
-   order_id_lookup_[key] = loc;
+   loc.location_in_hive = order_it;
+   it->second = loc;
 
    if (side == order_side::BUY) {
       update_best_bid_on_insert(order.price);
@@ -80,7 +100,7 @@ order_result orderbook::add(const order_t& order) {
          order.order_id,
          order.price,
          order.qty,
-         static_cast<order_side>(order.side)
+         side
       );
    }
 
