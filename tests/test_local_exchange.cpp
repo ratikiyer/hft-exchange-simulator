@@ -29,7 +29,7 @@ struct TestParser : public OrderParser {
         lock_t lock(mtx);
         order_t o = (idx < orders.size() ? orders[idx++] : order_t{});
         // Print the thread ID and order ID for visibility
-        std::cout << "[Parser thread " << std::this_thread::get_id() 
+        std::cout << "[Parser " << std::this_thread::get_id()
                   << "] delivered order " << o.order_id << '\n';
         return o;
     }
@@ -55,11 +55,53 @@ order_t make_order(const char* id,
     return o;
 }
 
+// Helper function to run one test sequence
+void run_sequence(const std::vector<order_t>& seq,
+                  const std::string&          log_path,
+                  const std::string&          test_name)
+{
+    using namespace std::chrono_literals;
+    std::cout << "\n=== Running " << test_name << " ===\n";
+
+    TestParser parser(seq);
+    logger     log(log_path);
+    Exchange   exch(&log, &parser);
+    exch.start();
+
+    // Launch 2 client threads to inject orders concurrently
+    std::vector<std::thread> clients;
+    for (int i = 0; i < 2; ++i) {
+        clients.emplace_back([&]() {
+            ParsedOrder dummy;
+            while (parser.parse_message(nullptr, 0, dummy)) {
+                exch.on_msg_received(nullptr, 0);
+                std::this_thread::sleep_for(1ms);
+            }
+        });
+    }
+
+    for (auto& th : clients) th.join();
+    std::this_thread::sleep_for(20ms);
+    exch.stop();
+
+    // Dump the log
+    std::ifstream in(log_path);
+    if (!in) {
+        std::cerr << "Cannot open " << log_path << "\n";
+        return;
+    }
+    std::cout << "--- Log (" << log_path << ") ---\n";
+    std::string line;
+    while (std::getline(in, line)) {
+        std::cout << line << "\n";
+    }
+}
+
 int main() {
     using namespace std::chrono_literals;
 
-    // Prepare a sequence of orders:
-    std::vector<order_t> seq = {
+    // Test 1: your original AAPL sequence
+    std::vector<order_t> seq1 = {
         make_order("B1","AAPL",order_side::BUY, order_status::NEW,            100, 5,  1),
         make_order("S1","AAPL",order_side::SELL,order_status::NEW,            100, 5,  2),
         make_order("B2","AAPL",order_side::BUY, order_status::NEW,             50,10,  3),
@@ -69,50 +111,25 @@ int main() {
         make_order("S2","AAPL",order_side::SELL,order_status::NEW,             55, 5,  7),
         make_order("B4","AAPL",order_side::BUY, order_status::PARTIALLY_FILLED,55, 4,  8),
     };
+    run_sequence(seq1, "test1.log", "Test #1: AAPL matching + cancels");
 
-    // 1) Hook up parser & real logger
-    TestParser    parser(seq);
-    logger        log("../logs/local_exchange.log");
+    // Test 2: large buy vs multiple smaller sells (partial fills)
+    std::vector<order_t> seq2 = {
+        make_order("B10","GOOG",order_side::BUY, order_status::NEW, 1000, 20, 1),
+        make_order("S10","GOOG",order_side::SELL,order_status::NEW, 1000, 5,  2),
+        make_order("S11","GOOG",order_side::SELL,order_status::NEW, 1000,15, 3),
+        make_order("S12","GOOG",order_side::SELL,order_status::NEW, 1000,10, 4),  // leaves unfilled residue
+    };
+    run_sequence(seq2, "test2.log", "Test #2: GOOG partial‐fill cascade");
 
-    // 2) Start exchange (auto-creates bucket/book on first message)
-    Exchange exch(&log, &parser);
-    exch.start();
+    // Test 3: orders on different tickers interleaved (no cross‐matching)
+    std::vector<order_t> seq3 = {
+        make_order("B20","MSFT",order_side::BUY, order_status::NEW, 200, 10, 1),
+        make_order("S20","AAPL",order_side::SELL,order_status::NEW,150, 10, 2),
+        make_order("S21","MSFT",order_side::SELL,order_status::NEW,200, 10, 3),
+        make_order("B21","AAPL",order_side::BUY, order_status::NEW,150,  5, 4),
+    };
+    run_sequence(seq3, "test3.log", "Test #3: Mixed‐ticker isolation");
 
-    // 3) Launch multiple client threads to inject orders concurrently
-    const int num_clients = 3;
-    std::vector<std::thread> clients;
-    clients.reserve(num_clients);
-
-    for (int i = 0; i < num_clients; ++i) {
-        clients.emplace_back([&]() {
-            ParsedOrder dummy;
-            // Each thread calls on_msg_received while parser has orders
-            while (parser.parse_message(nullptr, 0, dummy)) {
-                exch.on_msg_received(nullptr, 0);
-                std::this_thread::sleep_for(2ms);
-            }
-        });
-    }
-
-    // Wait for all client threads to finish
-    for (auto& th : clients) {
-        th.join();
-    }
-
-    // 4) Let matching threads drain
-    std::this_thread::sleep_for(50ms);
-    exch.stop();
-
-    // 5) Read and dump the log
-    std::ifstream in("test.log");
-    if (!in) {
-        std::cerr << "Failed to open test.log\n";
-        return 1;
-    }
-    std::string line;
-    std::cout << "=== LOG OUTPUT ===\n";
-    while (std::getline(in, line)) {
-        std::cout << line << "\n";
-    }
     return 0;
 }

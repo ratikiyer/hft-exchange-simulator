@@ -1,1 +1,0 @@
-/usr/bin/c++ "CMakeFiles/test-exchange.dir/tests/test_exchange.cpp.o" -o test-exchange  liborderbook_lib.a _deps/catch2-build/src/libCatch2Main.a /usr/lib/aarch64-linux-gnu/libboost_system.so.1.83.0 _deps/catch2-build/src/libCatch2.a 

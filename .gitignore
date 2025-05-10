@@ -1,6 +1,2 @@
-build/
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-.vscode/
+iex_python/20250415_113602_iexdata.txt
+iex_python/data_feeds_20220801_20220801_IEXTP1_DEEP1.0.pcap.gz
