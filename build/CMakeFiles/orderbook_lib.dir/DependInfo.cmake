@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/kevinxu/hft-exchange/src/logger.cpp" "CMakeFiles/orderbook_lib.dir/src/logger.cpp.o" "gcc" "CMakeFiles/orderbook_lib.dir/src/logger.cpp.o.d"
-  "/Users/kevinxu/hft-exchange/src/orderbook.cpp" "CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o" "gcc" "CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o.d"
+  "/app/src/logger.cpp" "CMakeFiles/orderbook_lib.dir/src/logger.cpp.o" "gcc" "CMakeFiles/orderbook_lib.dir/src/logger.cpp.o.d"
+  "/app/src/orderbook.cpp" "CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o" "gcc" "CMakeFiles/orderbook_lib.dir/src/orderbook.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -2,7 +2,7 @@
 
 #include "local_exchange.h"      // Exchange, OrderParser
 #include "types.h"               // ORDER_ID_LEN, TICKER_LEN
-#include <nlohmann/json.hpp>      // JSON parsing
+#include <nlohmann/json.hpp>     // JSON parsing
 #include <fstream>
 #include <vector>
 #include <string>
@@ -13,8 +13,6 @@
 #include <ctime>
 #include <cstring>
 #include <arpa/inet.h>
-
-// Performance statistics
 #include <mutex>
 #include <atomic>
 #include <numeric>
@@ -63,17 +61,13 @@ uint64_t parse_timestamp_ns(const std::string &ts) {
     return ns;
 }
 
-struct Event { uint64_t ts; std::vector<uint8_t> buf; };
+struct Event {
+    uint64_t ts;
+    std::vector<uint8_t> buf;
+};
 
 int main() {
-    using namespace std::chrono_literals;
-
-    // Statistics containers
-    std::mutex stats_mutex;
-    std::vector<uint64_t> proc_times_ns;
-    std::atomic<uint64_t> total_events{0};
-
-    // 1) Read & pack events grouped by user, track minimum timestamp
+    // 1) Read & pack events
     std::ifstream in("../iex_python/all_events_with_users.txt");
     if (!in) {
         std::cerr << "Cannot open events file\n";
@@ -83,7 +77,6 @@ int main() {
     std::unordered_map<int, std::vector<Event>> by_user;
     uint64_t global_min_ts = UINT64_MAX;
     std::string line;
-
     while (std::getline(in, line)) {
         if (line.empty()) continue;
         auto j = json::parse(line);
@@ -108,35 +101,41 @@ int main() {
         std::vector<uint8_t> buf;
         buf.reserve(8 + 1 + ORDER_ID_LEN + TICKER_LEN + 9);
 
+        // timestamp
         uint64_t net_ts = htonll(ts_ns);
-        buf.insert(buf.end(), reinterpret_cast<uint8_t*>(&net_ts), reinterpret_cast<uint8_t*>(&net_ts) + sizeof(net_ts));
+        buf.insert(buf.end(),
+                   reinterpret_cast<uint8_t*>(&net_ts),
+                   reinterpret_cast<uint8_t*>(&net_ts) + sizeof(net_ts));
         buf.push_back(msg_type);
 
         // order_id
         std::string oid = j["order_id"].is_null() ? "" : j["order_id"].get<std::string>();
         uint8_t oid_b[ORDER_ID_LEN] = {0};
-        size_t oid_len = std::min(oid.size(), size_t(ORDER_ID_LEN - 1));
-        std::memcpy(oid_b, oid.data(), oid_len);
+        std::memcpy(oid_b, oid.data(),
+                    std::min(oid.size(), size_t(ORDER_ID_LEN - 1)));
         buf.insert(buf.end(), oid_b, oid_b + ORDER_ID_LEN);
 
         // ticker
         std::string sym = j["symbol"].get<std::string>();
         uint8_t tkr_b[TICKER_LEN] = {0};
-        size_t sym_len = std::min(sym.size(), size_t(TICKER_LEN - 1));
-        std::memcpy(tkr_b, sym.data(), sym_len);
+        std::memcpy(tkr_b, sym.data(),
+                    std::min(sym.size(), size_t(TICKER_LEN - 1)));
         buf.insert(buf.end(), tkr_b, tkr_b + TICKER_LEN);
 
-        if (msg_type == TYPE_LIMIT_BUY || msg_type == TYPE_LIMIT_SELL) {
+        // price/size (and side byte for updates)
+        if (msg_type == TYPE_LIMIT_BUY || msg_type == TYPE_LIMIT_SELL ||
+            msg_type == TYPE_UPDATE) {
             uint32_t px = htonl(uint32_t(j["price"].get<double>() * 100));
             uint32_t sz = htonl(j["size"].get<uint32_t>());
-            buf.insert(buf.end(), reinterpret_cast<uint8_t*>(&px), reinterpret_cast<uint8_t*>(&px) + 4);
-            buf.insert(buf.end(), reinterpret_cast<uint8_t*>(&sz), reinterpret_cast<uint8_t*>(&sz) + 4);
-        } else if (msg_type == TYPE_UPDATE) {
-            uint32_t px = htonl(uint32_t(j["price"].get<double>() * 100));
-            uint32_t sz = htonl(j["size"].get<uint32_t>());
-            buf.insert(buf.end(), reinterpret_cast<uint8_t*>(&px), reinterpret_cast<uint8_t*>(&px) + 4);
-            buf.insert(buf.end(), reinterpret_cast<uint8_t*>(&sz), reinterpret_cast<uint8_t*>(&sz) + 4);
-            buf.push_back(uint8_t(side_ch));
+            buf.insert(buf.end(),
+                       reinterpret_cast<uint8_t*>(&px),
+                       reinterpret_cast<uint8_t*>(&px) + 4);
+            buf.insert(buf.end(),
+                       reinterpret_cast<uint8_t*>(&sz),
+                       reinterpret_cast<uint8_t*>(&sz) + 4);
+            if (msg_type == TYPE_UPDATE) {
+                buf.push_back(uint8_t(side_ch));
+            }
         }
 
         by_user[uid].push_back({ts_ns, std::move(buf)});
@@ -144,9 +143,18 @@ int main() {
 
     // sort each user's events
     for (auto &kv : by_user) {
-        auto &evs = kv.second;
-        std::sort(evs.begin(), evs.end(), [](auto &a, auto &b) { return a.ts < b.ts; });
+        std::sort(kv.second.begin(), kv.second.end(),
+                  [](auto &a, auto &b){ return a.ts < b.ts; });
     }
+
+    // Pre-allocate stats vector
+    size_t total_event_count = 0;
+    for (auto &kv : by_user) total_event_count += kv.second.size();
+
+    std::mutex    stats_mutex;
+    std::vector<uint64_t> proc_times_ns;
+    proc_times_ns.reserve(total_event_count);
+    std::atomic<uint64_t> total_events{0};
 
     // 2) Start exchange
     OrderParser parser;
@@ -154,33 +162,45 @@ int main() {
     Exchange exch(&log, &parser);
     exch.start();
 
-    // 3) Replay events
-    auto sim_start = steady_clock::now();
+    // 3) Replay events as fast as possible
     std::vector<std::thread> clients;
+    clients.reserve(by_user.size());
+
+    auto wall_start = steady_clock::now();
+
     for (auto &kv : by_user) {
-        int uid = kv.first;
-        auto events = kv.second;
-        clients.emplace_back([&, uid, events]() {
-            for (auto &ev : events) {
-                auto target = sim_start + nanoseconds(ev.ts - global_min_ts);
-                std::this_thread::sleep_until(target);
-                auto start = steady_clock::now();
+        auto *events_ptr = &kv.second;
+        clients.emplace_back([&, events_ptr]() {
+            // Local timing buffer
+            std::vector<uint64_t> local_times;
+            local_times.reserve(events_ptr->size());
+
+            for (auto &ev : *events_ptr) {
+                auto t0 = steady_clock::now();
                 exch.on_msg_received(ev.buf.data(), ev.buf.size());
-                auto end = steady_clock::now();
-                uint64_t dur = duration_cast<nanoseconds>(end - start).count();
-                {
-                    std::lock_guard<std::mutex> lg(stats_mutex);
-                    proc_times_ns.push_back(dur);
-                }
-                ++total_events;
+                auto dt = duration_cast<nanoseconds>(steady_clock::now() - t0).count();
+                local_times.push_back(dt);
+                total_events.fetch_add(1, std::memory_order_relaxed);
+            }
+
+            // Merge once under lock
+            {
+                std::lock_guard<std::mutex> lg(stats_mutex);
+                proc_times_ns.insert(proc_times_ns.end(),
+                                     local_times.begin(), local_times.end());
             }
         });
     }
-    for (auto &t : clients) t.join();
+
+    for (auto &t : clients) {
+        t.join();
+    }
 
     // 4) Tear down
     std::this_thread::sleep_for(50ms);
     exch.stop();
+
+    auto wall_end = steady_clock::now();
 
     // 5) Print performance statistics
     {
@@ -188,21 +208,22 @@ int main() {
         size_t n = proc_times_ns.size();
         if (n > 0) {
             std::sort(proc_times_ns.begin(), proc_times_ns.end());
-            uint64_t sum_ns = std::accumulate(proc_times_ns.begin(), proc_times_ns.end(), uint64_t(0));
-            double total_sec = sum_ns / 1e9;
-            double avg_us = sum_ns / double(n) / 1e3;
+            uint64_t sum_ns = std::accumulate(proc_times_ns.begin(),
+                                              proc_times_ns.end(), uint64_t(0));
+            double wall_sec = duration_cast<duration<double>>(wall_end - wall_start).count();
+            double avg_us   = sum_ns / double(n) / 1e3;
             uint64_t min_us = proc_times_ns.front() / 1e3;
-            uint64_t max_us = proc_times_ns.back() / 1e3;
+            uint64_t max_us = proc_times_ns.back()  / 1e3;
             uint64_t p95_us = proc_times_ns[(n * 95) / 100] / 1e3;
-            double tp = n / total_sec;
+            double tp       = n / wall_sec;
 
             std::cout << "\n=== PERFORMANCE STATISTICS ===\n";
-            std::cout << "Events processed:  " << n << "\n";
-            std::cout << "Total time:        " << total_sec << " s\n";
-            std::cout << "Avg per-event:     " << avg_us   << " μs\n";
-            std::cout << "Min / Max:         " << min_us   << " μs / " << max_us << " μs\n";
-            std::cout << "95th percentile:   " << p95_us   << " μs\n";
-            std::cout << "Throughput:        " << tp       << " events/s\n";
+            std::cout << "Events processed:     " << n        << "\n";
+            std::cout << "Wall-clock time:      " << wall_sec << " s\n";
+            std::cout << "Avg per-event:        " << avg_us   << " μs\n";
+            std::cout << "Min / Max:            " << min_us   << " μs / " << max_us << " μs\n";
+            std::cout << "95th percentile:      " << p95_us   << " μs\n";
+            std::cout << "Throughput:           " << tp       << " events/s\n";
         }
     }
 
