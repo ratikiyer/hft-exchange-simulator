@@ -9,7 +9,7 @@
 
 using namespace std::chrono_literals;
 
-static constexpr bool ENABLE_DEBUG = true;
+static constexpr bool ENABLE_DEBUG = false;
 #define DBG(x) do { if (ENABLE_DEBUG) std::cout << "[DEBUG] " << x << std::endl; } while(0)
 
 static const std::vector<std::string> BUCKETS = {
