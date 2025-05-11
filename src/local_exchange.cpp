@@ -7,6 +7,7 @@
 #include <utility>
 #include <algorithm>
 #include <cctype>
+#include <string_view>   // <- added
 
 using namespace std::chrono_literals;
 
@@ -140,7 +141,7 @@ void Exchange::enqueue_order(const order_t& order) {
         bt.thread = std::thread(&Exchange::book_loop, this, &bt);
     }
 
-    // ── 2) Lazy‐create the symbol’s orderbook if needed ────────────────────────
+    // ── 2) Lazy‐create the symbol's orderbook if needed ────────────────────────
     auto [book_it, was_book_inserted] =
         bt.books.emplace(sym, orderbook(logger_));
     if (was_book_inserted) {
@@ -158,73 +159,45 @@ void Exchange::book_loop(BucketThread* bt) {
     std::cout << "[DEBUG] bucket thread started\n";
     order_t order;
     while (running_.load()) {
-        if (bt->order_queue.try_dequeue(order)) {
-            std::string sym(order.ticker, TICKER_LEN);
-            auto bookIt = bt->books.find(sym);
-            if (bookIt == bt->books.end()) {
-                std::cout << "[DEBUG] no orderbook for " << sym << "\n";
-                continue;
-            }
-
-            std::cout << "[DEBUG] dequeued order for " << sym << "\n";
-            order_id_key key;
-            std::memcpy(key.order_id, order.order_id, ORDER_ID_LEN);
-
-            auto status = static_cast<order_status>(order.status);
-            order_result res;
-
-            switch (status) {
-                case order_status::NEW:
-                    res = bookIt->second.add(order);
-                    if (res == order_result::SUCCESS) {
-                        // logger_->log_price_level_update(
-                        //   order.timestamp,
-                        //   order.order_id,
-                        //   order.price,
-                        //   order.qty,
-                        //   static_cast<order_side>(order.side)
-                        // );
-                    }
-                    break;
-
-                case order_status::CANCELLED:
-                    res = bookIt->second.cancel(key);
-                    if (res == order_result::SUCCESS) {
-                        // logger_->log_cancel_order(
-                        //   order.timestamp,
-                        //   order.order_id,
-                        //   order.price,
-                        //   order.qty,
-                        //   static_cast<order_side>(order.side)
-                        // );
-                    }
-                    break;
-
-                case order_status::PARTIALLY_FILLED:
-                case order_status::FILLED:
-                    res = bookIt->second.modify(key, order);
-                    if (res == order_result::SUCCESS) {
-                        // logger_->log_trade_report(
-                        //   order.timestamp,
-                        //   order.order_id,
-                        //   order.price,
-                        //   order.qty,
-                        //   order.order_id,
-                        //   order.price
-                        // );
-                    }
-                    break;
-
-                default:
-                    std::cout << "[DEBUG] unknown status\n";
-                    break;
-            }
-
-            // execute any pending matches in this bucket
-            bookIt->second.execute();
-        }
-        else {
+        if (!bt->order_queue.try_dequeue(order)) {
             std::this_thread::sleep_for(1ms);
+            continue;
+        }
+
+        std::string sym(order.ticker, TICKER_LEN);
+        auto bookIt = bt->books.find(sym);
+        if (bookIt == bt->books.end()) {
+            std::cout << "[ERROR] No orderbook for symbol " << sym << "\n";
+            continue;
+        }
+
+        std::cout << "[DEBUG] Dequeued order for " << sym << "\n";
+        order_id_key key;
+        std::memcpy(key.order_id, order.order_id, ORDER_ID_LEN);
+
+        auto status = static_cast<order_status>(order.status);
+        order_result res;
+
+        switch (status) {
+            case order_status::NEW:
+                res = bookIt->second.add(order);
+                break;
+            case order_status::CANCELLED:
+                res = bookIt->second.cancel(key);
+                break;
+            case order_status::PARTIALLY_FILLED:
+            case order_status::FILLED:
+                res = bookIt->second.modify(key, order);
+                break;
+            default:
+                std::cout << "[WARNING] Unknown order status: "
+                          << static_cast<int>(status) << "\n";
+                res = order_result::INVALID_SIDE;
+                break;
+        }
+
+        if (res == order_result::SUCCESS) {
+            bookIt->second.execute();
         }
     }
     std::cout << "[DEBUG] bucket thread exiting\n";

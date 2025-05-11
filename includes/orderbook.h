@@ -16,6 +16,7 @@
 
 static constexpr uint32_t MAX_PRICE = 20000;
 
+
 enum class order_result : uint8_t {
    SUCCESS=0,
    DUPLICATE_ID=10,
@@ -33,6 +34,7 @@ struct order_location {
 struct price_level {
    plf::hive<order_t> orders;
    size_t total_qty = 0;
+
 };
 
 class orderbook final {
@@ -43,7 +45,7 @@ private:
    uint32_t best_bid_price_ = 0;
    uint32_t best_ask_price_ = MAX_PRICE + 1;
 
-   std::unordered_map< order_id_key, order_location, order_id_hasher > order_id_lookup_;
+   robin_hood::unordered_map< order_id_key, order_location, order_id_hasher > order_id_lookup_;
 
    logger* log_ = nullptr;
 

@@ -43,62 +43,72 @@ public:
     /**
      * Parse raw data into ParsedOrder. Returns false if invalid or truncated.
      */
-    virtual bool parse_message(const uint8_t* data, size_t len, ParsedOrder& out) {
+    virtual bool parse_message(const uint8_t* data, size_t len,
+                               ParsedOrder& out) {
         using namespace detail;
-        if (!data || len < 9) return false;  // need ts(8)+type(1)
 
-        size_t off = 0;
+        // ── 1) Quick size check: timestamp(8) + type(1) + id + ticker ─────────
+        constexpr size_t BASE_LEN = 9 + ORDER_ID_LEN + TICKER_LEN;
+        if (!data || len < BASE_LEN) return false;
+
+        // ── 2) Timestamp & type (unaligned‑safe) ──────────────────────────────
         uint64_t raw_ts;
-        std::memcpy(&raw_ts, data + off, sizeof(raw_ts)); off += sizeof(raw_ts);
+        std::memcpy(&raw_ts, data, sizeof raw_ts);
         out.timestamp = ntohll(raw_ts);
-        out.msg_type = data[off++];
-        if (len < off + ORDER_ID_LEN) return false;
-        std::memcpy(out.order_id, data + off, ORDER_ID_LEN);
-        off += ORDER_ID_LEN;
+        out.msg_type  = data[8];
 
-        if (len < off + TICKER_LEN) return false;
-        std::memset(out.ticker, 0, TICKER_LEN);
-        std::memcpy(out.ticker, data + off, TICKER_LEN);
-        off += TICKER_LEN;
+        // ── 3) Order‑id & ticker (single pass pointer arithmetic) ────────────
+        const uint8_t* p = data + 9;            //   ↳ point right after type
+        std::memcpy(out.order_id, p, ORDER_ID_LEN);
+        p += ORDER_ID_LEN;
+        std::memcpy(out.ticker,   p, TICKER_LEN);
+        p += TICKER_LEN;
 
+        // ── 4) Defaults for optional fields ──────────────────────────────────
         out.price  = 0;
         out.qty    = 0;
         out.is_buy = false;
 
+        // ── 5) Type‑specific parsing, minimal branching ──────────────────────
         switch (out.msg_type) {
             case TYPE_LIMIT_BUY:
             case TYPE_LIMIT_SELL:
             case TYPE_MARKET_BUY:
             case TYPE_MARKET_SELL: {
-
-                if (len < off + 8) return false;
-                uint32_t raw_px, raw_qty;
-                std::memcpy(&raw_px,  data + off, 4); off += 4;
-                std::memcpy(&raw_qty, data + off, 4); off += 4;
-                out.price  = ntohl(raw_px);
-                out.qty    = ntohl(raw_qty);
-                out.is_buy = (out.msg_type == TYPE_LIMIT_BUY || out.msg_type == TYPE_MARKET_BUY);
+                if (len < static_cast<size_t>(p - data) + 8) return false;
+                uint32_t raw_price, raw_qty;
+                std::memcpy(&raw_price, p,      4);
+                std::memcpy(&raw_qty,   p + 4,  4);
+                out.price = ntohl(raw_price);
+                out.qty   = ntohl(raw_qty);
+                out.is_buy = (out.msg_type == TYPE_LIMIT_BUY ||
+                              out.msg_type == TYPE_MARKET_BUY);
                 break;
             }
+
             case TYPE_UPDATE: {
-
-                if (len < off + 9) return false;
-                uint32_t raw_px, raw_qty;
-                std::memcpy(&raw_px,  data + off, 4); off += 4;
-                std::memcpy(&raw_qty, data + off, 4); off += 4;
-                out.price    = ntohl(raw_px);
-                out.qty      = ntohl(raw_qty);
-                out.is_buy   = (data[off] == 'B');
+                if (len < static_cast<size_t>(p - data) + 9) return false;
+                uint32_t raw_price, raw_qty;
+                std::memcpy(&raw_price, p,      4);
+                std::memcpy(&raw_qty,   p + 4,  4);
+                out.price = ntohl(raw_price);
+                out.qty   = ntohl(raw_qty);
+                out.is_buy = (p[8] == 'B');       // side byte
                 break;
             }
+
             case TYPE_CANCEL:
+                // nothing beyond order_id/ticker
                 break;
+
             default:
-                return false;
+                return false; // Unknown type
         }
 
-        if (out.msg_type != TYPE_CANCEL && (out.price == 0 || out.qty == 0))
+        // ── 6) Basic sanity for priced orders ────────────────────────────────
+        if (out.msg_type != TYPE_CANCEL && (out.price == 0 || out.qty == 0)) {
             return false;
+        }
         return true;
     }
 
