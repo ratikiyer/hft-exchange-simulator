@@ -1,4 +1,3 @@
-// local_exchange.cpp
 #include "local_exchange.h"
 #include <chrono>
 #include <thread>
@@ -7,13 +6,12 @@
 #include <utility>
 #include <algorithm>
 #include <cctype>
-#include <string_view>   // <- added
 
 using namespace std::chrono_literals;
 
-// ----------------------------------------------------------------
-// 1) Define the buckets exactly as on your chart
-// ----------------------------------------------------------------
+static constexpr bool ENABLE_DEBUG = true;
+#define DBG(x) do { if (ENABLE_DEBUG) std::cout << "[DEBUG] " << x << std::endl; } while(0)
+
 static const std::vector<std::string> BUCKETS = {
     "A","B","C","D",
     "EA-E","EF-Z",
@@ -26,9 +24,6 @@ static const std::vector<std::string> BUCKETS = {
     "T","U","V","W","X","Y","Z"
 };
 
-// ----------------------------------------------------------------
-// 2) Helper: map a ticker → bucket label
-// ----------------------------------------------------------------
 static std::string get_bucket(const std::string& sym) {
     if (sym.empty()) return "";
     char c0 = std::toupper(sym[0]);
@@ -54,22 +49,22 @@ Exchange::Exchange(logger* logger_ptr,
   : logger_(logger_ptr)
   , parser_(parser_ptr)
 {
-    std::cout << "[DEBUG] Exchange constructed\n";
+    DBG("Exchange constructed");
 }
 
 Exchange::~Exchange() {
     stop();
-    std::cout << "[DEBUG] Exchange destructed\n";
+    DBG("Exchange destructed");
 }
 
 void Exchange::start() {
     running_.store(true);
-    std::cout << "[DEBUG] Exchange::start() – running_=true\n";
+    DBG("Exchange::start() – running_=true");
 }
 
 void Exchange::stop() {
     if (!running_.exchange(false)) return;
-    std::cout << "[DEBUG] Exchange::stop() – running_=false\n";
+    DBG("Exchange::stop() – running_=false");
     for (auto & [bucket, bt] : bucketThreads_) {
       if (bt.thread.joinable()) bt.thread.join();
     }
@@ -79,7 +74,7 @@ void Exchange::add_symbol(const char* symbol) {
     std::string sym(symbol, TICKER_LEN);
     std::string bucket = get_bucket(sym);
     if (bucket.empty()) {
-      std::cout << "[DEBUG] add_symbol: invalid bucket for " << sym << "\n";
+      DBG("add_symbol: invalid bucket for " << sym);
       return;
     }
 
@@ -88,38 +83,33 @@ void Exchange::add_symbol(const char* symbol) {
       BucketThread{}
     );
 
-    // On first symbol for this bucket, spawn its thread
     if (inserted) {
-      std::cout << "[DEBUG] creating bucket thread for " << bucket << "\n";
+      DBG("creating bucket thread for " << bucket);
       it->second.thread = std::thread(&Exchange::book_loop, this, &it->second);
     }
 
-    // register the symbol's orderbook in that bucket
     auto &bt = it->second;
     auto [bookIt, added] =
       bt.books.emplace(sym, orderbook(logger_));
     if (added) {
-      std::cout << "[DEBUG] added symbol " << sym
-                << " into bucket " << bucket << "\n";
+      DBG("added symbol " << sym << " into bucket " << bucket);
     } else {
-      std::cout << "[DEBUG] symbol " << sym
-                << " already in bucket " << bucket << "\n";
+      DBG("symbol " << sym << " already in bucket " << bucket);
     }
 }
 
 void Exchange::on_msg_received(const uint8_t* data, size_t len) {
-    std::cout << "[DEBUG] on_msg_received(len=" << len << ")\n";
+    DBG("on_msg_received(len=" << len << ")");
     ParsedOrder parsed;
     if (!parser_->parse_message(data, len, parsed)) {
-      std::cout << "[DEBUG] parse_message failed\n";
+      DBG("parse_message failed");
       return;
     }
     order_t order = parser_->convert_to_order(parsed);
-    std::cout << "[DEBUG] parsed order id="
-              << std::string(order.order_id, ORDER_ID_LEN)
-              << " ticker=" << std::string(order.ticker, TICKER_LEN)
-              << " price=" << order.price
-              << " qty=" << order.qty << "\n";
+    DBG("parsed order id=" << std::string(order.order_id, ORDER_ID_LEN)
+        << " ticker=" << std::string(order.ticker, TICKER_LEN)
+        << " price=" << order.price
+        << " qty=" << order.qty);
     enqueue_order(order);
 }
 
@@ -127,78 +117,69 @@ void Exchange::enqueue_order(const order_t& order) {
     const std::string sym(order.ticker, TICKER_LEN);
     const std::string bucket = get_bucket(sym);
     if (bucket.empty()) {
-        std::cout << "[DEBUG] enqueue_order: invalid bucket for " << sym << "\n";
+        DBG("enqueue_order: invalid bucket for " << sym);
         return;
     }
 
-    // ── 1) Lazy‐create the bucket/thread if needed ───────────────────────────────
     auto [bt_it, was_bucket_inserted] =
         bucketThreads_.emplace(bucket, BucketThread{});
     BucketThread &bt = bt_it->second;
 
     if (was_bucket_inserted) {
-        std::cout << "[DEBUG] auto‐creating bucket thread for " << bucket << "\n";
+        DBG("auto‑creating bucket thread for " << bucket);
         bt.thread = std::thread(&Exchange::book_loop, this, &bt);
     }
 
-    // ── 2) Lazy‐create the symbol's orderbook if needed ────────────────────────
     auto [book_it, was_book_inserted] =
         bt.books.emplace(sym, orderbook(logger_));
     if (was_book_inserted) {
-        std::cout << "[DEBUG] auto‐adding book for symbol " << sym
-                  << " into bucket " << bucket << "\n";
+        DBG("auto‑adding book for symbol " << sym << " into bucket " << bucket);
     }
 
-    // ── 3) Finally enqueue the order ──────────────────────────────────────────
     bt.order_queue.enqueue(order);
-    std::cout << "[DEBUG] enqueued order for " << sym
-              << " into bucket " << bucket << "\n";
+    DBG("enqueued order for " << sym << " into bucket " << bucket);
 }
 
 void Exchange::book_loop(BucketThread* bt) {
-    std::cout << "[DEBUG] bucket thread started\n";
+    DBG("bucket thread started");
     order_t order;
     while (running_.load()) {
-        if (!bt->order_queue.try_dequeue(order)) {
-            std::this_thread::sleep_for(1ms);
-            continue;
-        }
+        if (bt->order_queue.try_dequeue(order)) {
+            std::string sym(order.ticker, TICKER_LEN);
+            auto bookIt = bt->books.find(sym);
+            if (bookIt == bt->books.end()) {
+                DBG("no orderbook for " << sym);
+                continue;
+            }
 
-        std::string sym(order.ticker, TICKER_LEN);
-        auto bookIt = bt->books.find(sym);
-        if (bookIt == bt->books.end()) {
-            std::cout << "[ERROR] No orderbook for symbol " << sym << "\n";
-            continue;
-        }
+            DBG("dequeued order for " << sym);
+            order_id_key key;
+            std::memcpy(key.order_id, order.order_id, ORDER_ID_LEN);
 
-        std::cout << "[DEBUG] Dequeued order for " << sym << "\n";
-        order_id_key key;
-        std::memcpy(key.order_id, order.order_id, ORDER_ID_LEN);
+            auto status = static_cast<order_status>(order.status);
+            order_result res;
 
-        auto status = static_cast<order_status>(order.status);
-        order_result res;
+            switch (status) {
+                case order_status::NEW:
+                    res = bookIt->second.add(order);
+                    break;
+                case order_status::CANCELLED:
+                    res = bookIt->second.cancel(key);
+                    break;
+                case order_status::PARTIALLY_FILLED:
+                case order_status::FILLED:
+                    res = bookIt->second.modify(key, order);
+                    break;
+                default:
+                    DBG("unknown status");
+                    break;
+            }
 
-        switch (status) {
-            case order_status::NEW:
-                res = bookIt->second.add(order);
-                break;
-            case order_status::CANCELLED:
-                res = bookIt->second.cancel(key);
-                break;
-            case order_status::PARTIALLY_FILLED:
-            case order_status::FILLED:
-                res = bookIt->second.modify(key, order);
-                break;
-            default:
-                std::cout << "[WARNING] Unknown order status: "
-                          << static_cast<int>(status) << "\n";
-                res = order_result::INVALID_SIDE;
-                break;
-        }
-
-        if (res == order_result::SUCCESS) {
             bookIt->second.execute();
         }
+        else {
+            std::this_thread::sleep_for(1ms);
+        }
     }
-    std::cout << "[DEBUG] bucket thread exiting\n";
+    DBG("bucket thread exiting");
 }
