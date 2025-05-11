@@ -4,6 +4,7 @@
 #include <optional>
 #include <sys/types.h>
 #include <chrono>
+#include <algorithm>
 
 static inline uint64_t get_current_time_ns() {
    using namespace std::chrono;
@@ -212,14 +213,15 @@ order_result orderbook::cancel(const order_id_key& id) {
 }
 
 void orderbook::execute() {
+   const uint64_t match_timestamp = get_current_time_ns();
+   
    while (best_bid_price_ >= best_ask_price_) {
-      if (bids_[best_bid_price_].orders.empty() ||
-          asks_[best_ask_price_].orders.empty()) {
-         break;
-      }
-
       price_level& bid_level = bids_[best_bid_price_];
       price_level& ask_level = asks_[best_ask_price_];
+      
+      if (bid_level.orders.empty() || ask_level.orders.empty()) {
+         break;
+      }
 
       plf::hive<order_t>::iterator bid_it = bid_level.orders.begin();
       plf::hive<order_t>::iterator ask_it = ask_level.orders.begin();
@@ -231,17 +233,13 @@ void orderbook::execute() {
       order_t& bid_order = *bid_it;
       order_t& ask_order = *ask_it;
 
-      size_t match_qty = (bid_order.qty < ask_order.qty
-                             ? bid_order.qty
-                             : ask_order.qty);
+      const size_t match_qty = std::min(bid_order.qty, ask_order.qty);
 
       bid_order.qty -= match_qty;
       ask_order.qty -= match_qty;
       bid_level.total_qty -= match_qty;
       ask_level.total_qty -= match_qty;
 
-
-      uint64_t match_timestamp = get_current_time_ns();
       if (log_) {
          log_->log_trade_report(
             match_timestamp,
@@ -253,32 +251,40 @@ void orderbook::execute() {
          );
       }
 
-      if (bid_order.qty == 0) {
+      const bool bid_fully_filled = (bid_order.qty == 0);
+      const bool ask_fully_filled = (ask_order.qty == 0);
+      
+      if (bid_fully_filled) {
          order_id_key bid_key;
          std::memcpy(bid_key.order_id, bid_order.order_id, ORDER_ID_LEN);
-
          bid_level.orders.erase(bid_it);
          order_id_lookup_.erase(bid_key);
       }
 
-      if (ask_order.qty == 0) {
+      if (ask_fully_filled) {
          order_id_key ask_key;
          std::memcpy(ask_key.order_id, ask_order.order_id, ORDER_ID_LEN);
-
          ask_level.orders.erase(ask_it);
          order_id_lookup_.erase(ask_key);
       }
 
-      if (bid_level.orders.empty()) {
+      const bool bid_level_now_empty = bid_level.orders.empty();
+      const bool ask_level_now_empty = ask_level.orders.empty();
+      
+      if (bid_level_now_empty) {
          bid_level.total_qty = 0;
          update_best_bid_on_cancel(best_bid_price_);
       }
-      if (ask_level.orders.empty()) {
+      
+      if (ask_level_now_empty) {
          ask_level.total_qty = 0;
          update_best_ask_on_cancel(best_ask_price_);
       }
+      
+      if (bid_level_now_empty && ask_level_now_empty) {
+         break;
+      }
    }
-   
 }
 
 inline void orderbook::update_best_bid_on_insert(uint32_t price) {
