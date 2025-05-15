@@ -7,14 +7,14 @@
 #include <vector>
 #include <string>
 #include <thread>
-#include <unordered_map>
+#include <queue>
+#include <mutex>
+#include <atomic>
 #include <algorithm>
 #include <chrono>
 #include <ctime>
 #include <cstring>
 #include <arpa/inet.h>
-#include <mutex>
-#include <atomic>
 #include <numeric>
 #include <iostream>
 
@@ -40,17 +40,17 @@ time_t parse_time(const std::string &s) {
     tm.tm_hour = std::stoi(s.substr(11,2));
     tm.tm_min  = std::stoi(s.substr(14,2));
     tm.tm_sec  = std::stoi(s.substr(17,2));
-#ifdef _WIN32
-    return _mkgmtime(&tm);
-#else
+#ifndef _WIN32
     return timegm(&tm);
+#else
+    return _mkgmtime(&tm);
 #endif
 }
 
 // Convert timestamp string with fractional seconds → nanoseconds since epoch
 uint64_t parse_timestamp_ns(const std::string &ts) {
     size_t pos = ts.find('.');
-    std::string core = (pos == std::string::npos ? ts : ts.substr(0, pos));
+    std::string core = pos == std::string::npos ? ts : ts.substr(0, pos);
     time_t sec = parse_time(core);
     uint64_t ns = uint64_t(sec) * 1'000'000'000ULL;
     if (pos != std::string::npos) {
@@ -67,15 +67,16 @@ struct Event {
 };
 
 int main() {
-    // 1) Read & pack events
-    std::ifstream in("../iex_python/all_events_with_users.txt");
+    // 1) Read & pack events into one big vector
+    std::ifstream in("../iex_python/all_events_with_users2.txt");
     if (!in) {
         std::cerr << "Cannot open events file\n";
         return 1;
     }
 
-    std::unordered_map<int, std::vector<Event>> by_user;
-    uint64_t global_min_ts = UINT64_MAX;
+    std::vector<Event> all_events;
+    all_events.reserve(1'000'000); // adjust if you know approximate size
+
     std::string line;
     while (std::getline(in, line)) {
         if (line.empty()) continue;
@@ -84,8 +85,6 @@ int main() {
         if (type == "modify") continue;
 
         uint64_t ts_ns = parse_timestamp_ns(j["timestamp"].get<std::string>());
-        global_min_ts = std::min(global_min_ts, ts_ns);
-        int uid = j["user_id"].is_null() ? -1 : j["user_id"].get<int>();
 
         char side_ch = j["side"].get<std::string>()[0];
         uint8_t msg_type;
@@ -101,7 +100,6 @@ int main() {
         std::vector<uint8_t> buf;
         buf.reserve(8 + 1 + ORDER_ID_LEN + TICKER_LEN + 9);
 
-        // timestamp
         uint64_t net_ts = htonll(ts_ns);
         buf.insert(buf.end(),
                    reinterpret_cast<uint8_t*>(&net_ts),
@@ -138,52 +136,64 @@ int main() {
             }
         }
 
-        by_user[uid].push_back({ts_ns, std::move(buf)});
+        all_events.push_back({ts_ns, std::move(buf)});
     }
 
-    // sort each user's events
-    for (auto &kv : by_user) {
-        std::sort(kv.second.begin(), kv.second.end(),
-                  [](auto &a, auto &b){ return a.ts < b.ts; });
-    }
+    // 2) Sort globally by timestamp
+    std::sort(all_events.begin(), all_events.end(),
+              [](auto &a, auto &b){ return a.ts < b.ts; });
 
-    // Pre-allocate stats vector
-    size_t total_event_count = 0;
-    for (auto &kv : by_user) total_event_count += kv.second.size();
+    // 3) Prepare shared queue
+    std::queue<Event> queue;
+    for (auto &ev : all_events) queue.push(std::move(ev));
+    all_events.clear();
 
-    std::mutex    stats_mutex;
+    std::mutex      queue_mutex;
+    std::mutex      stats_mutex;
+    std::mutex      exch_mutex;
     std::vector<uint64_t> proc_times_ns;
-    proc_times_ns.reserve(total_event_count);
+    proc_times_ns.reserve(queue.size());
     std::atomic<uint64_t> total_events{0};
 
-    // 2) Start exchange
+    // 4) Start exchange
     OrderParser parser;
     logger log("client.log");
     Exchange exch(&log, &parser);
     exch.start();
 
-    // 3) Replay events as fast as possible
-    std::vector<std::thread> clients;
-    clients.reserve(by_user.size());
-
+    // 5) Launch worker pool
+    unsigned W = std::thread::hardware_concurrency();
+    std::vector<std::thread> workers;
     auto wall_start = steady_clock::now();
 
-    for (auto &kv : by_user) {
-        auto *events_ptr = &kv.second;
-        clients.emplace_back([&, events_ptr]() {
-            // Local timing buffer
+    for (unsigned i = 0; i < W; ++i) {
+        workers.emplace_back([&]() {
             std::vector<uint64_t> local_times;
-            local_times.reserve(events_ptr->size());
+            local_times.reserve(10000);
 
-            for (auto &ev : *events_ptr) {
+            while (true) {
+                // pop one event
+                Event ev;
+                {
+                    std::lock_guard<std::mutex> lk(queue_mutex);
+                    if (queue.empty()) break;
+                    ev = std::move(queue.front());
+                    queue.pop();
+                }
+
+                // process
                 auto t0 = steady_clock::now();
-                exch.on_msg_received(ev.buf.data(), ev.buf.size());
-                auto dt = duration_cast<nanoseconds>(steady_clock::now() - t0).count();
+                {
+                    // protect on_msg_received if it's not internally thread-safe
+                    std::lock_guard<std::mutex> lk(exch_mutex);
+                    exch.on_msg_received(ev.buf.data(), ev.buf.size());
+                }
+                uint64_t dt = duration_cast<nanoseconds>(steady_clock::now() - t0).count();
                 local_times.push_back(dt);
                 total_events.fetch_add(1, std::memory_order_relaxed);
             }
 
-            // Merge once under lock
+            // merge stats
             {
                 std::lock_guard<std::mutex> lg(stats_mutex);
                 proc_times_ns.insert(proc_times_ns.end(),
@@ -192,21 +202,17 @@ int main() {
         });
     }
 
-    for (auto &t : clients) {
-        t.join();
-    }
-
-    // 4) Tear down
+    // 6) Join & tear down
+    for (auto &t : workers) t.join();
     std::this_thread::sleep_for(50ms);
     exch.stop();
-
     auto wall_end = steady_clock::now();
 
-    // 5) Print performance statistics
+    // 7) Print stats
     {
         std::lock_guard<std::mutex> lg(stats_mutex);
         size_t n = proc_times_ns.size();
-        if (n > 0) {
+        if (n) {
             std::sort(proc_times_ns.begin(), proc_times_ns.end());
             uint64_t sum_ns = std::accumulate(proc_times_ns.begin(),
                                               proc_times_ns.end(), uint64_t(0));
@@ -217,13 +223,13 @@ int main() {
             uint64_t p95_us = proc_times_ns[(n * 95) / 100] / 1e3;
             double tp       = n / wall_sec;
 
-            std::cout << "\n=== PERFORMANCE STATISTICS ===\n";
-            std::cout << "Events processed:     " << n        << "\n";
-            std::cout << "Wall-clock time:      " << wall_sec << " s\n";
-            std::cout << "Avg per-event:        " << avg_us   << " μs\n";
-            std::cout << "Min / Max:            " << min_us   << " μs / " << max_us << " μs\n";
-            std::cout << "95th percentile:      " << p95_us   << " μs\n";
-            std::cout << "Throughput:           " << tp       << " events/s\n";
+            std::cout << "\n=== PERFORMANCE STATISTICS ===\n"
+                      << "Events processed:     " << n        << "\n"
+                      << "Wall-clock time:      " << wall_sec << " s\n"
+                      << "Avg per-event:        " << avg_us   << " μs\n"
+                      << "Min / Max:            " << min_us   << " μs / " << max_us << " μs\n"
+                      << "95th percentile:      " << p95_us   << " μs\n"
+                      << "Throughput:           " << tp       << " events/s\n";
         }
     }
 

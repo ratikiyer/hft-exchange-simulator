@@ -4,7 +4,7 @@ from decimal import Decimal
 import json
 
 # Path to your PCAP file
-DEEP_SAMPLE_DATA_FILE = '/Users/kevinxu/hft-exchange/iex_python/data_feeds_20220801_20220801_IEXTP1_DEEP1.0.pcap.gz'
+DEEP_SAMPLE_DATA_FILE = '/Users/kevinxu/hft-exchange/iex_python/iex_logs/data_feeds_20220801_20220801_IEXTP1_DEEP1.0.pcap.gz'
 
 # Output file with timestamp
 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')

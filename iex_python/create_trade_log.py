@@ -170,10 +170,11 @@ class EventReconstructor:
         book.book['S'][price] = max(0, available - size)
         self.record_fill(symbol, price, size, ts, hidden)
 
-def main(file_path, max_lines=100000, target_symbol='AAPL', all_symbols=False, num_users=10):
+def main(file_path, max_lines=500000, target_symbol='AAPL', all_symbols=False, num_users=10):
     recon = EventReconstructor(num_users=num_users)
     with open(file_path, 'r') as f:
         for idx, line in enumerate(f):
+            print("Processing line", idx)
             if idx >= max_lines:
                 break
             try:
@@ -187,7 +188,7 @@ def main(file_path, max_lines=100000, target_symbol='AAPL', all_symbols=False, n
             elif msg['type'] == 'trade':
                 recon.process_trade(msg)
 
-    output_file = f"{target_symbol}_events_with_users.txt" if not all_symbols else "all_events_with_users.txt"
+    output_file = f"{target_symbol}_events_with_users.txt" if not all_symbols else "all_events_with_users2.txt"
     with open(output_file, 'w') as f:
         if not all_symbols:
             for event in recon.events.get(target_symbol, []):
