@@ -27,11 +27,18 @@ The HFT system was benchmarked on the two platforms under identical conditions, 
 | Min / Max Latency (μs)      |                         0 / 76  |                   0 / **5,134** |
 | 95th Percentile Latency     |                               3 |                               3 |
 
-![Throughput Comparison](imgs/fig1.png)  
-*Figure 1: The EPYC server processes slightly more events per second than the MacBook Air.*
+<p align="center">
+  <img src="imgs/fig1.png" alt="Throughput Comparison" width="600"/>
+</p>
 
-![Latency Spike](imgs/fig2.png)  
-*Figure 2: The MacBook Air experienced a one-time latency spike of over 5ms, whereas the server stayed under 100μs.*
+<p align="center"><em>Figure 1: The EPYC server processes slightly more events per second than the MacBook Air.</em></p>
+
+
+<p align="center">
+  <img src="imgs/fig2.png" alt="Latency Spike" width="600"/>
+</p>
+
+<p align="center"><em>Figure 2: The MacBook Air experienced a one-time latency spike of over 5ms, whereas the server stayed under 100μs.</em></p>
 
 ## Analysis
 
