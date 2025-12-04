@@ -81,7 +81,6 @@ Hi, I'm Ratik, a sophomore at the University of Illinois Urbana-Champaign studyi
 
 Email: ratiki2@illinois.edu  
 LinkedIn: [https://www.linkedin.com/in/ratik-iyer-57058b17a/](https://www.linkedin.com/in/ratik-iyer-57058b17a/)  
-Github: [https://github.com/ratikiyer](https://github.com/ratikiyer)
 
 <p align="center">
   <img src="imgs/Kevin_headshot.JPG" alt="Headshot" width="200"/>
