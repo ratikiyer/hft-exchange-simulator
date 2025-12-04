@@ -75,9 +75,9 @@ For production HFT, server-class hardware is strongly recommended.
   <img src="imgs/Ratik_headshot.JPG" alt="Headshot" width="200">
 </p>
 
-**Ratik Iyer, SWE**
+**Ratik Iyer, QR**
 
-Hi, I'm Ratik, a sophomore at the University of Illinois Urbana-Champaign studying Computer Science, Statistics, and Math. I am passionate about quantitative trading, machine learning, and high-performance computing. My primary languages are C++ and Python. I am currently seeking internship opportunities for trading/research roles are hedge funds, prop shops, and market makers. 
+Hi, I'm Ratik, a sophomore at the University of Illinois Urbana-Champaign studying Computer Science, Statistics, and Math. I am passionate about quantitative trading, machine learning, and high-performance computing. My primary languages are C++ and Python. I am currently seeking internship opportunities for quantitative research and trading roles are hedge funds, prop shops, and market makers. 
 
 Email: ratiki2@illinois.edu  
 LinkedIn: [https://www.linkedin.com/in/ratik-iyer-57058b17a/](https://www.linkedin.com/in/ratik-iyer-57058b17a/)  
