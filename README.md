@@ -83,7 +83,7 @@ Email: ratiki2@illinois.edu
 LinkedIn: [https://www.linkedin.com/in/ratik-iyer-57058b17a/](https://www.linkedin.com/in/ratik-iyer-57058b17a/)  
 
 <p align="center">
-  <img src="imgs/Kevin_headshot.JPG" alt="Headshot" width="200"/>
+  <img src="imgs/Anuraag_headshot.jpg" alt="Anuraag_Headshot" width="200"/>
 </p>
 
 **Anuraag Aravindan, QT**
@@ -92,6 +92,10 @@ Hello, I am a sophomore studying Computer Science and Economics at UIUC. I am in
 
 Email: anuraag6@illinois.edu  
 LinkedIn: [https://www.linkedin.com/in/anuraag-aravindan/](https://www.linkedin.com/in/anuraag-aravindan/)
+
+<p align="center">
+  <img src="imgs/Kevin_headshot.JPG" alt="Headshot" width="200"/>
+</p>
 
 **Kevin Xu, SWE**
 
@@ -111,8 +115,3 @@ Hello, I am a sophomore studying Computer Science at UIUC. I am interested in ma
 
 Email: siddc2@illinois.edu  
 LinkedIn: [https://www.linkedin.com/in/sidd-cheetancheri/](https://www.linkedin.com/in/sidd-cheetancheri/)
-
-<p align="center">
-  <img src="imgs/Anuraag_headshot.jpg" alt="Anuraag_Headshot" width="200"/>
-</p>
-
