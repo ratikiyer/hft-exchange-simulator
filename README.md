@@ -86,6 +86,13 @@ LinkedIn: [https://www.linkedin.com/in/ratik-iyer-57058b17a/](https://www.linked
   <img src="imgs/Kevin_headshot.JPG" alt="Headshot" width="200"/>
 </p>
 
+**Anuraag Aravindan, QT**
+
+Hello, I am a sophomore studying Computer Science and Economics at UIUC. I am interested in quantitative trading, statistical modeling, and machine learning. I am proficient in Python, and C++. I am interested in opportunties as a trader at options market makers and hedge funds for both low and high touch desks. I am interested in any summer 2026 opportunities.
+
+Email: anuraag6@illinois.edu  
+LinkedIn: [https://www.linkedin.com/in/anuraag-aravindan/](https://www.linkedin.com/in/anuraag-aravindan/)
+
 **Kevin Xu, SWE**
 
 Hello, I am a sophomore studying Statistics + Computer Science. I am interested in statistical modeling, software engineering, and high frequency trading technology development. I am proficient in Python, C++, and C# and am interested in any opportunities for Summer 2026. 
@@ -108,11 +115,4 @@ LinkedIn: [https://www.linkedin.com/in/sidd-cheetancheri/](https://www.linkedin.
 <p align="center">
   <img src="imgs/Anuraag_headshot.jpg" alt="Anuraag_Headshot" width="200"/>
 </p>
-
-**Anuraag Aravindan, SWE**
-
-Hello, I am a sophomore studying Computer Science and Economics at UIUC. I am interested in quantitative trading, statistical modeling, and machine learning. I am proficient in Python, and C++. I am interested in opportunties as a trader at options market makers and hedge funds for both low and high touch desks. I am interested in any summer 2026 opportunities.
-
-Email: anuraag6@illinois.edu  
-LinkedIn: [https://www.linkedin.com/in/anuraag-aravindan/](https://www.linkedin.com/in/anuraag-aravindan/)
 
